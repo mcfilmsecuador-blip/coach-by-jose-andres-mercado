@@ -42,9 +42,9 @@ const AppHeader = ({ title, subtitle, showBack, onBack, onNotificationsClick, av
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             <img 
-              src="/logo_coach_transparent.png" 
+              src="/logo_coach_transparent.png?v=2" 
               alt="Coach Logo" 
-              style={{ height: '52px', objectFit: 'contain' }} 
+              style={{ height: '60px', objectFit: 'contain' }} 
             />
             <span style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.4)', marginTop: '2px', fontWeight: '500' }}>
               Entrenamiento Personal

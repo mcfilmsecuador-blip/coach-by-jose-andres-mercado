@@ -441,7 +441,7 @@ const WorkoutExecution = ({ workout, onFinish, onBack }) => {
 
         <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center' }}>
           <img
-            src="/logo_coach_transparent.png"
+            src="/logo_coach_transparent.png?v=2"
             alt="Coach App Logo"
             style={{ height: '40px', objectFit: 'contain' }}
           />

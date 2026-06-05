@@ -82,7 +82,7 @@ const Nutrition = () => {
               Nutrición de Hoy
             </h1>
             <img 
-              src="/logo_coach_transparent.png" 
+              src="/logo_coach_transparent.png?v=2" 
               alt="Coach Logo" 
               style={{ height: '40px', objectFit: 'contain' }} 
             />

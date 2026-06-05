@@ -150,7 +150,7 @@ const Profile = () => {
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', width: '100%' }}>
         <h1 className="text-h1" style={{ margin: 0 }}>Perfil</h1>
         <img 
-          src="/logo_coach_transparent.png" 
+          src="/logo_coach_transparent.png?v=2" 
           alt="Coach Logo" 
           style={{ height: '40px', objectFit: 'contain' }} 
         />

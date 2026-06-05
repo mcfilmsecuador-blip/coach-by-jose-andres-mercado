@@ -924,7 +924,7 @@ const Training = () => {
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', width: '100%' }}>
           <h1 className="text-h1" style={{ margin: 0 }}>Entrenamiento</h1>
           <img 
-            src="/logo_coach_transparent.png" 
+            src="/logo_coach_transparent.png?v=2" 
             alt="Coach Logo" 
             style={{ height: '40px', objectFit: 'contain' }} 
           />
