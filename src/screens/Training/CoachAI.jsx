@@ -497,7 +497,7 @@ INSTRUCCIONES CRÍTICAS DE COMUNICACIÓN (PERSONALIDAD Y ESTILO):
               border: '1px solid var(--color-border)',
               borderRadius: '24px',
               color: 'var(--color-text-primary)',
-              fontSize: '13px',
+              fontSize: '16px',
               outline: 'none',
               transition: 'border-color 0.2s ease'
             }}
