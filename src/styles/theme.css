@@ -1,0 +1,38 @@
+:root {
+  /* Colors - Dark Theme (Default) */
+  --color-primary: #C8FF00;
+  --color-bg-base: #0B0D10;
+  --color-bg-surface: #16191F;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8A8F98;
+  --color-border: #2A2D35;
+  --color-success: #4CAF50;
+  --color-error: #F44336;
+  --color-warning: #FF9800;
+  --color-disabled: #3A3D45;
+
+  /* Typography */
+  --font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Layout & Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --nav-height: 70px;
+}
+
+[data-theme="light"] {
+  --color-bg-base: #F5F6F7;
+  --color-bg-surface: #FFFFFF;
+  --color-text-primary: #101114;
+  --color-text-secondary: #6B7280;
+  --color-border: #E5E7EB;
+  --color-disabled: #E5E7EB;
+}

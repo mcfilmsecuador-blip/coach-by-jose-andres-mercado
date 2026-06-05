@@ -1,0 +1,315 @@
+
+> app-coach@0.0.0 lint
+> eslint .
+
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/App.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/AppHeader/AppHeader.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/BottomNavigation/BottomNavigation.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/Buttons/Button.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/ErrorBoundary/ErrorBoundary.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/ExerciseAnimator.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/GlassCard/GlassCard.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/Inputs/TextInput.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/Modal/ConfirmModal.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/States/States.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/components/Toast/Toast.jsx
+   1:8   error  'React' is defined but never used  no-unused-vars
+  13:18  error  'id' is defined but never used     no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/context/NotificationContext.jsx
+    1:8   error  'React' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            no-unused-vars
+    6:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               react-refresh/only-export-components
+   22:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  20 |     const saved = localStorage.getItem('coach_notifications');
+  21 |     if (saved) {
+> 22 |       setNotifications(JSON.parse(saved));
+     |       ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  23 |     } else if (userProfile) {
+  24 |       // Seed initial welcoming notifications if empty
+  25 |       const initialNotifs = [  react-hooks/set-state-in-effect
+   57:9   error  'saveNotifications' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       no-unused-vars
+  125:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  123 |
+  124 |       if (diffDays >= 3) {
+> 125 |         addNotification(
+      |         ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  126 |           'workout',
+  127 |           '¡Hora de volver al gimnasio!',
+  128 |           `Han pasado ${diffDays} días desde tu último entrenamiento registrado. ¡Mantén la disciplina!`            react-hooks/set-state-in-effect
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/context/PlanContext.jsx
+   1:8   error  'React' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                no-unused-vars
+   9:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   react-refresh/only-export-components
+  67:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  65 |     if (!userProfile) return;
+  66 |     try {
+> 67 |       setLoading(true);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  68 |       const generated = generatePersonalizedPlan(userProfile);
+  69 |       setActivePlan(generated);
+  70 |       setLoading(false);  react-hooks/set-state-in-effect
+  90:28  error  'workoutDayId' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/context/ToastContext.jsx
+  1:8   error  'React' is defined but never used                                                                                               no-unused-vars
+  7:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/data/exercisesData.js
+  209:31  error  'mainMuscle' is defined but never used                                         no-unused-vars
+  218:9   error  The value assigned to 'secondaryMuscles' is not used in subsequent statements  no-useless-assignment
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Auth/Auth.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Home/Home.jsx
+   1:8  error  'React' is defined but never used    no-unused-vars
+  12:3  error  'Compass' is defined but never used  no-unused-vars
+  23:3  error  'Heart' is defined but never used    no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/NotFound/NotFound.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Notifications/Notifications.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Nutrition/FoodPrep.jsx
+  1:8   error  'React' is defined but never used     no-unused-vars
+  2:92  error  'Sparkles' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Nutrition/Nutrition.jsx
+   1:8   error  'React' is defined but never used     no-unused-vars
+   3:76  error  'Utensils' is defined but never used  no-unused-vars
+  49:30  error  'key' is defined but never used       no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Nutrition/Recipes.jsx
+   1:8   error  'React' is defined but never used  no-unused-vars
+   2:36  error  'Award' is defined but never used  no-unused-vars
+  30:29  error  'type' is defined but never used   no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Nutrition/ShoppingList.jsx
+  1:8   error  'React' is defined but never used  no-unused-vars
+  2:42  error  'Info' is defined but never used   no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Onboarding/Onboarding.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Premium/Premium.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Profile/AdjustPlan.jsx
+  1:8   error  'React' is defined but never used          no-unused-vars
+  3:21  error  'Save' is defined but never used           no-unused-vars
+  3:27  error  'AlertTriangle' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Profile/Profile.jsx
+   1:8   error  'React' is defined but never used                     no-unused-vars
+   6:13  error  'ChevronDown' is defined but never used               no-unused-vars
+   6:26  error  'ChevronUp' is defined but never used                 no-unused-vars
+   6:37  error  'Plus' is defined but never used                      no-unused-vars
+   6:43  error  'Camera' is defined but never used                    no-unused-vars
+   6:51  error  'BarChart' is defined but never used                  no-unused-vars
+   6:61  error  'Heart' is defined but never used                     no-unused-vars
+  14:24  error  'activePlan' is assigned a value but never used       no-unused-vars
+  77:9   error  'weightChangeStr' is assigned a value but never used  no-unused-vars
+  80:9   error  'latestMeas' is assigned a value but never used       no-unused-vars
+  84:9   error  'streak' is assigned a value but never used           no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Profile/Settings.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Progress/Progress.jsx
+    1:8  error    'React' is defined but never used                                                                                                                                                                           no-unused-vars
+  527:9  warning  The 'completedDays' logical expression could make the dependencies of useMemo Hook (at line 532) change on every render. To fix this, wrap the initialization of 'completedDays' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  527:9  warning  The 'completedDays' logical expression could make the dependencies of useMemo Hook (at line 533) change on every render. To fix this, wrap the initialization of 'completedDays' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/SetupProfile/SetupProfile.jsx
+   1:8   error    'React' is defined but never used                                                                                        no-unused-vars
+   5:44  error    'Dumbbell' is defined but never used                                                                                     no-unused-vars
+   5:61  error    'Calendar' is defined but never used                                                                                     no-unused-vars
+   5:71  error    'Heart' is defined but never used                                                                                        no-unused-vars
+  59:6   warning  React Hook useEffect has a missing dependency: 'analyzerSteps.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Splash/SplashScreen.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Training/CoachAI.jsx
+    1:8   error  'React' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                no-unused-vars
+    4:47  error  'Utensils' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             no-unused-vars
+    4:57  error  'Info' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 no-unused-vars
+    5:8   error  'TextInput' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            no-unused-vars
+   24:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  22 |   useEffect(() => {
+  23 |     if (messages.length === 0) {
+> 24 |       setIsTyping(true);
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  25 |       const timer = setTimeout(() => {
+  26 |         setMessages([
+  27 |           {  react-hooks/set-state-in-effect
+  171:19  error  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  169 |     // Add user message
+  170 |     const userMsg = {
+> 171 |       id: `user-${Date.now()}`,
+      |                   ^^^^^^^^^^ Cannot call impure function
+  172 |       sender: 'user',
+  173 |       text: text.trim(),
+  174 |       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })                                                                                                                                                                                                                                                                                                                               react-hooks/purity
+  263:22  error  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  261 |
+  262 |       const coachMsg = {
+> 263 |         id: `coach-${Date.now()}`,
+      |                      ^^^^^^^^^^ Cannot call impure function
+  264 |         sender: 'coach',
+  265 |         text: coachText.trim(),
+  266 |         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })                                                                                                                                                                                                                                                                                                                                  react-hooks/purity
+  273:22  error  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  271 |       console.error("Error llamando a OpenAI:", error);
+  272 |       const errorMsg = {
+> 273 |         id: `error-${Date.now()}`,
+      |                      ^^^^^^^^^^ Cannot call impure function
+  274 |         sender: 'coach',
+  275 |         text: `⚠️ **Error de conexión con Coach AI**: ${error.message || 'No se pudo conectar con el servidor de inteligencia artificial. Revisa tu clave en el archivo .env o tu conexión a internet.'}`,
+  276 |         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })                                                                                               react-hooks/purity
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Training/ExerciseDetail.jsx
+  1:8   error  'React' is defined but never used     no-unused-vars
+  3:60  error  'Zap' is defined but never used       no-unused-vars
+  3:65  error  'Activity' is defined but never used  no-unused-vars
+  3:75  error  'Info' is defined but never used      no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Training/InteractiveBody.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Training/MuscleMap.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Training/Training.jsx
+    4:62  error  'ShieldAlert' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   no-unused-vars
+    9:26  error  'EmptyState' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    no-unused-vars
+   29:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  27 |   useEffect(() => {
+  28 |     if (location.state?.tab) {
+> 29 |       setTab(location.state.tab);
+     |       ^^^^^^ Avoid calling setState() directly within an effect
+  30 |     }
+  31 |     if (location.state?.view) {
+  32 |       setActiveView(location.state.view);  react-hooks/set-state-in-effect
+  870:20  error  'time' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/screens/Training/WorkoutExecution.jsx
+    1:8   error    'React' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      no-unused-vars
+    3:61  error    'Plus' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       no-unused-vars
+    3:93  error    'ChevronRight' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               no-unused-vars
+   70:16  error    'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          no-unused-vars
+   70:19  error    Empty block statement                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  no-empty
+  152:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  150 |     else if (exercise.equipment === 'maquina' || exercise.equipment === 'poleas') defaultWeight = 30;
+  151 |
+> 152 |     setSetsData(
+      |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  153 |       Array.from({ length: numSets }, (_, i) => ({
+  154 |         id: i + 1,
+  155 |         reps: initialReps,  react-hooks/set-state-in-effect
+  226:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  224 |     if (phase === 'preparing' || phase === 'get-ready') {
+  225 |       // → Begin exercise set
+> 226 |       setPhase('exercising');
+      |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  227 |       setPhaseTimeLeft(EXERCISE_DURATION);
+  228 |       playPrepEndBeep();
+  229 |                                 react-hooks/set-state-in-effect
+  251:3   warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+  328:9   error    'completedSetsCount' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                no-unused-vars
+
+/Users/andresmercado/Documents/App GYM/App Coach/src/utils/planGenerator.js
+   28:5   error  'trainingDaysPerWeek' is assigned a value but never used                  no-unused-vars
+  572:9   error  The value assigned to 'dayCalories' is not used in subsequent statements  no-useless-assignment
+  573:9   error  The value assigned to 'dayCarbs' is not used in subsequent statements     no-useless-assignment
+  574:9   error  The value assigned to 'dayFocus' is not used in subsequent statements     no-useless-assignment
+  714:48  error  Unnecessary escape character: \/                                          no-useless-escape
+  714:52  error  Unnecessary escape character: \g                                          no-useless-escape
+  714:54  error  Unnecessary escape character: \.                                          no-useless-escape
+  714:56  error  Unnecessary escape character: \,                                          no-useless-escape
+  747:15  error  '_' is defined but never used                                             no-unused-vars
+
+✖ 103 problems (99 errors, 4 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

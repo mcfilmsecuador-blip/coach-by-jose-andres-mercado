@@ -1,0 +1,17 @@
+{
+  "name": "Coach - Fitness App",
+  "short_name": "Coach",
+  "description": "Tu entrenador personal y nutricionista de bolsillo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0D10",
+  "theme_color": "#0B0D10",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
