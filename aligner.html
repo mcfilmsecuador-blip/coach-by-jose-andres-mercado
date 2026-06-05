@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alineador Visual Premium - Ejercicios Coach</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0b0b0c;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #151518;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2b2b30;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff4500;
+    }
+  </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-[#151518] border-b border-[#202024] px-6 py-4 flex items-center justify-between z-10 shrink-0">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center text-white text-lg font-black shadow-lg shadow-orange-950/30">
+        <i class="fa-solid fa-dumbbell"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-bold tracking-tight">Alineador Visual Premium</h1>
+        <p class="text-xs text-gray-400">Vincula las ilustraciones de inicio y fin con sus ejercicios correspondientes</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="text-sm bg-[#0b0b0c] px-4 py-2 rounded-lg border border-[#202024]">
+        Progreso: <span id="progress-text" class="text-orange-500 font-bold">0 / 201</span>
+      </div>
+      <button onclick="exportMapping()" class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-5 py-2 rounded-lg flex items-center gap-2 shadow-lg shadow-orange-950/20 transition duration-150">
+        <i class="fa-solid fa-file-export"></i> Exportar Mapeo (mapping.json)
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="flex-1 flex overflow-hidden">
+    
+    <!-- Left Column: Exercises List -->
+    <div class="w-[380px] bg-[#121215] border-r border-[#202024] flex flex-col h-full shrink-0">
+      <div class="p-4 border-b border-[#202024]">
+        <input type="text" id="search-exercise" oninput="filterExercises()" placeholder="Buscar ejercicio..." class="w-full bg-[#1b1b20] border border-[#2d2d35] rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-orange-500 placeholder-gray-500">
+      </div>
+      <div class="flex-1 overflow-y-auto p-3 space-y-2" id="exercises-container">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Right Workspace -->
+    <div class="flex-1 flex flex-col h-full bg-[#0b0b0c] p-6 overflow-y-auto">
+      
+      <!-- Selected Exercise Info Banner -->
+      <div id="no-selected-exercise" class="flex-1 flex flex-col items-center justify-center text-center text-gray-500 py-12">
+        <i class="fa-solid fa-arrow-left text-5xl text-orange-600/30 mb-4 animate-bounce"></i>
+        <h3 class="text-lg font-bold text-gray-300">Selecciona un ejercicio de la lista</h3>
+        <p class="text-sm max-w-sm mt-1">Para comenzar a alinear, selecciona el ejercicio que deseas emparejar en la columna izquierda.</p>
+      </div>
+
+      <div id="workspace-container" class="hidden flex flex-col gap-6">
+        <!-- Exercise Card -->
+        <div class="bg-[#151518] border border-[#202024] rounded-xl p-5 flex flex-col gap-3 shadow-lg">
+          <div class="flex items-center justify-between">
+            <span id="selected-muscle" class="text-xs text-orange-500 uppercase font-extrabold tracking-wider bg-orange-950/40 px-3 py-1 rounded-full border border-orange-850/20">PECHO</span>
+            <span id="selected-equipment" class="text-xs text-gray-400 uppercase font-semibold flex items-center gap-1.5"><i class="fa-solid fa-cube"></i> Barra</span>
+          </div>
+          <h2 id="selected-name" class="text-2xl font-black text-white">Press de banca con barra</h2>
+          <p id="selected-prompt" class="text-sm text-gray-400 leading-relaxed bg-[#0b0b0c] p-4 rounded-lg border border-[#1b1b20]">
+            Anatomical 3D model illustration of a highly defined...
+          </p>
+        </div>
+
+        <!-- Aligner Section -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-gray-200 flex items-center gap-2"><i class="fa-solid fa-circle-nodes text-orange-500"></i> Selecciona la Pareja de Fotos</h3>
+            <span class="text-xs text-gray-500">Filtra los lotes de fotos abajo para encontrar la que corresponda</span>
+          </div>
+
+          <!-- Selected Files Panel -->
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Start Selection Spot -->
+            <div id="spot-start" onclick="openBatchSelector('start')" class="border-2 border-dashed border-[#2d2d35] hover:border-orange-500/50 bg-[#121215] rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer transition duration-150 h-[320px]">
+              <i class="fa-solid fa-image text-3xl text-gray-600 mb-2"></i>
+              <span class="text-sm font-semibold text-gray-400">FOTO INICIO</span>
+              <span class="text-xs text-gray-600 mt-1">Haz clic para seleccionar</span>
+            </div>
+            <!-- End Selection Spot -->
+            <div id="spot-end" onclick="openBatchSelector('end')" class="border-2 border-dashed border-[#2d2d35] hover:border-orange-500/50 bg-[#121215] rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer transition duration-150 h-[320px]">
+              <i class="fa-solid fa-image text-3xl text-gray-600 mb-2"></i>
+              <span class="text-sm font-semibold text-gray-400">FOTO FIN</span>
+              <span class="text-xs text-gray-600 mt-1">Haz clic para seleccionar</span>
+            </div>
+          </div>
+
+          <!-- Match Save Bar -->
+          <div class="flex justify-end gap-3 mt-2">
+            <button onclick="clearCurrentSelection()" class="bg-[#1c1c22] hover:bg-[#25252e] border border-[#2d2d35] text-gray-300 font-bold px-6 py-3 rounded-xl transition">
+              Limpiar Selección
+            </button>
+            <button id="btn-save-match" disabled onclick="saveCurrentMatch()" class="bg-orange-600 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed hover:bg-orange-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition">
+              Confirmar Pareja y Guardar
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Selection Modal -->
+  <div id="selector-modal" class="fixed inset-0 bg-black/75 flex items-center justify-center z-50 hidden transition duration-200">
+    <div class="bg-[#151518] border border-[#202024] rounded-2xl w-[90%] max-w-6xl h-[85vh] flex flex-col overflow-hidden shadow-2xl">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-[#202024] flex items-center justify-between bg-[#1a1a1f]">
+        <h4 class="text-lg font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-photo-film text-orange-500"></i> Seleccionar Foto de <span id="modal-type" class="text-orange-500 uppercase font-black">INICIO</span>
+        </h4>
+        <button onclick="closeBatchSelector()" class="text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="flex-1 flex overflow-hidden">
+        <!-- Batches Sidebar -->
+        <div class="w-[280px] bg-[#121215] border-r border-[#202024] flex flex-col h-full shrink-0 overflow-y-auto p-4 space-y-3">
+          <h5 class="text-xs text-gray-500 uppercase tracking-widest font-black mb-1">Lotes / Batches</h5>
+          <div id="modal-batches-list" class="space-y-2">
+            <!-- Batches rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Grid of Images -->
+        <div class="flex-1 flex flex-col h-full bg-[#0b0b0c] p-6 overflow-hidden">
+          <div class="text-xs text-gray-500 mb-4 uppercase tracking-wider font-extrabold flex items-center justify-between">
+            <span>Fotos disponibles en el Lote seleccionado</span>
+            <span class="text-orange-500" id="selected-batch-info">Selecciona un lote de la izquierda</span>
+          </div>
+          <!-- Images Grid -->
+          <div class="flex-1 overflow-y-auto grid grid-cols-3 gap-4" id="modal-images-grid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Block -->
+  <script>
+    // Embedded exercises data
+    const exercises = [{"id":"press_banca_barra","name":"Press de banca con barra","muscle":"Pecho","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_banca_mancuernas","name":"Press de banca con mancuernas","muscle":"Pecho","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_maquina","name":"Press en máquina","muscle":"Pecho","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"flexiones_tradicionales","name":"Flexiones tradicionales","muscle":"Pecho","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"aperturas_pec_deck","name":"Aperturas en máquina pec deck","muscle":"Pecho","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_inclinado_barra","name":"Press inclinado con barra","muscle":"Pecho","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_inclinado_mancuernas","name":"Press inclinado con mancuernas","muscle":"Pecho","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_inclinado_maquina","name":"Press inclinado en máquina","muscle":"Pecho","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"aperturas_inclinadas_mancuernas","name":"Aperturas inclinadas con mancuernas","muscle":"Pecho","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"cruce_poleas_abajo_arriba","name":"Cruce de poleas de abajo hacia arriba","muscle":"Pecho","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"fondos_paralelas_torso","name":"Fondos en paralelas inclinando el torso","muscle":"Pecho","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_declinado_barra","name":"Press declinado con barra","muscle":"Pecho","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_declinado_mancuernas","name":"Press declinado con mancuernas","muscle":"Pecho","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"cruce_poleas_arriba_abajo","name":"Cruce de poleas de arriba hacia abajo","muscle":"Pecho","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"flexiones_inclinadas_banco","name":"Flexiones inclinadas en banco","muscle":"Pecho","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"jalon_pecho_amplio","name":"Jalón al pecho agarre amplio","muscle":"Espalda","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"jalon_pecho_neutro","name":"Jalón al pecho agarre neutro","muscle":"Espalda","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"dominadas","name":"Dominadas","muscle":"Espalda","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"dominadas_asistidas","name":"Dominadas asistidas","muscle":"Espalda","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"pullover_polea_alta","name":"Pull-over en polea alta","muscle":"Espalda","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"remo_barra","name":"Remo con barra","muscle":"Espalda","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"remo_sentado_polea","name":"Remo sentado en polea","muscle":"Espalda","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"remo_mancuerna_unilateral","name":"Remo con mancuerna unilateral","muscle":"Espalda","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"remo_t_bar","name":"Remo T-bar","muscle":"Espalda","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"remo_maquina","name":"Remo en máquina","muscle":"Espalda","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_convencional","name":"Peso muerto convencional","muscle":"Espalda","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_rumano_espalda","name":"Peso muerto rumano","muscle":"Espalda","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"hiperextensiones_banco","name":"Hiperextensiones en banco","muscle":"Espalda","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"buenos_dias_barra_espalda","name":"Buenos días con barra","muscle":"Espalda","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"superman_suelo","name":"Superman en suelo","muscle":"Espalda","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_militar_barra","name":"Press militar con barra","muscle":"Hombros","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_militar_mancuernas","name":"Press militar con mancuernas","muscle":"Hombros","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_arnold","name":"Press Arnold","muscle":"Hombros","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_maquina_hombro","name":"Press en máquina de hombro","muscle":"Hombros","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_frontal_mancuernas","name":"Elevación frontal con mancuernas","muscle":"Hombros","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevaciones_laterales_mancuernas","name":"Elevaciones laterales con mancuernas","muscle":"Hombros","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevaciones_laterales_polea","name":"Elevaciones laterales en polea","muscle":"Hombros","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevaciones_laterales_maquina","name":"Elevaciones laterales en máquina","muscle":"Hombros","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_lateral_unilateral","name":"Elevación lateral unilateral","muscle":"Hombros","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"remo_menton_agarre_amplio","name":"Remo al mentón con agarre amplio","muscle":"Hombros","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"pajaros_mancuernas","name":"Pájaros con mancuernas","muscle":"Hombros","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"reverse_pec_deck","name":"Reverse pec deck","muscle":"Hombros","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"face_pull","name":"Face pull","muscle":"Hombros","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_posterior_polea","name":"Elevación posterior en polea","muscle":"Hombros","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"band_pull_aparts","name":"Band pull-aparts","muscle":"Hombros","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"rotacion_externa_banda","name":"Rotación externa con banda","muscle":"Hombros","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"rotacion_externa_polea","name":"Rotación externa en polea","muscle":"Hombros","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"rotacion_interna_banda","name":"Rotación interna con banda","muscle":"Hombros","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"scapular_push_ups","name":"Scapular push-ups","muscle":"Hombros","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"wall_slides","name":"Wall slides","muscle":"Hombros","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_barra_recta","name":"Curl con barra recta","muscle":"Bíceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_barra_z","name":"Curl con barra Z","muscle":"Bíceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_mancuernas","name":"Curl con mancuernas","muscle":"Bíceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_alterno","name":"Curl alterno","muscle":"Bíceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_inclinado_mancuernas","name":"Curl inclinado con mancuernas","muscle":"Bíceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_predicador","name":"Curl predicador","muscle":"Bíceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_polea_baja","name":"Curl en polea baja","muscle":"Bíceps","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_concentrado","name":"Curl concentrado","muscle":"Bíceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_martillo","name":"Curl martillo","muscle":"Bíceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_inverso_barra_z","name":"Curl inverso con barra Z","muscle":"Bíceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_zottman","name":"Curl Zottman","muscle":"Bíceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"chin_ups","name":"Chin-ups / dominada supina","muscle":"Bíceps","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"pushdown_polea_cuerda","name":"Pushdown en polea con cuerda","muscle":"Tríceps","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"pushdown_barra_recta","name":"Pushdown con barra recta","muscle":"Tríceps","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"extension_cabeza_mancuerna","name":"Extensión por encima de la cabeza con mancuerna","muscle":"Tríceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"extension_overhead_polea","name":"Extensión overhead en polea","muscle":"Tríceps","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"skull_crushers","name":"Skull crushers","muscle":"Tríceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"press_cerrado_barra","name":"Press cerrado con barra","muscle":"Tríceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"fondos_paralelas","name":"Fondos en paralelas","muscle":"Tríceps","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"fondos_banco","name":"Fondos en banco","muscle":"Tríceps","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"flexiones_diamante","name":"Flexiones diamante","muscle":"Tríceps","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"patada_triceps_mancuerna","name":"Patada de tríceps con mancuerna","muscle":"Tríceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_muneca_barra","name":"Curl de muñeca con barra","muscle":"Antebrazos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_inverso_muneca","name":"Curl inverso de muñeca","muscle":"Antebrazos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_inverso_barra_z_antebrazo","name":"Curl inverso con barra Z","muscle":"Antebrazos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"farmer_walk","name":"Farmer walk","muscle":"Antebrazos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"dead_hang","name":"Dead hang","muscle":"Antebrazos","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"plate_pinch","name":"Plate pinch","muscle":"Antebrazos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"wrist_roller","name":"Wrist roller","muscle":"Antebrazos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_martillo_antebrazo","name":"Curl martillo","muscle":"Antebrazos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"zottman_curl_antebrazo","name":"Zottman curl","muscle":"Antebrazos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"hold_peso_muerto","name":"Hold de peso muerto","muscle":"Antebrazos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"crunch_suelo","name":"Crunch en suelo","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"crunch_maquina","name":"Crunch en máquina","muscle":"Abdomen/Core","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"crunch_polea_alta","name":"Crunch en polea alta","muscle":"Abdomen/Core","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"reverse_crunch","name":"Reverse crunch","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_piernas_acostado","name":"Elevación de piernas acostado","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_rodillas_colgado","name":"Elevación de rodillas colgado","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"russian_twist","name":"Russian twist","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"woodchopper_polea","name":"Woodchopper en polea","muscle":"Abdomen/Core","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"side_plank","name":"Side plank","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"bicicleta_abdominal","name":"Bicicleta abdominal","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"pallof_press","name":"Pallof press","muscle":"Abdomen/Core","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"plancha_frontal","name":"Plancha frontal","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"plancha_toque_hombro","name":"Plancha con toque de hombro","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"dead_bug","name":"Dead bug","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"bird_dog","name":"Bird dog","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"hollow_hold","name":"Hollow hold","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"ab_wheel_rollout","name":"Ab wheel rollout","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"mountain_climbers","name":"Mountain climbers","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"bear_crawl","name":"Bear crawl","muscle":"Abdomen/Core","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"hip_thrust_barra","name":"Hip thrust con barra","muscle":"Glúteos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"hip_thrust_maquina","name":"Hip thrust en máquina","muscle":"Glúteos","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"puente_gluteos","name":"Puente de glúteos","muscle":"Glúteos","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_rumano_gluteos","name":"Peso muerto rumano","muscle":"Glúteos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_sumo_gluteos","name":"Peso muerto sumo","muscle":"Glúteos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"sentadilla_profunda","name":"Sentadilla profunda","muscle":"Glúteos","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"prensa_pies_altos","name":"Prensa con pies altos","muscle":"Glúteos","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"patada_gluteo_maquina","name":"Patada de glúteo en máquina","muscle":"Glúteos","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"abduccion_maquina_gluteos","name":"Abducción en máquina","muscle":"Glúteos","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"abduccion_polea_gluteos","name":"Abducción en polea","muscle":"Glúteos","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"caminata_lateral_banda","name":"Caminata lateral con banda","muscle":"Glúteos","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"monster_walks_gluteos","name":"Monster walks","muscle":"Glúteos","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"clamshell_gluteos","name":"Clamshell","muscle":"Glúteos","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"bulgarian_split_squat_gluteos","name":"Bulgarian split squat","muscle":"Glúteos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"step_up_gluteos","name":"Step-up","muscle":"Glúteos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"zancada_caminando_gluteos","name":"Zancada caminando","muscle":"Glúteos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"zancada_inversa_gluteos","name":"Zancada inversa","muscle":"Glúteos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"single_leg_rdl_gluteos","name":"Single-leg Romanian deadlift","muscle":"Glúteos","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"pull_through_polea","name":"Pull-through en polea","muscle":"Glúteos","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"frog_pumps","name":"Frog pumps","muscle":"Glúteos","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"sentadilla_trasera","name":"Sentadilla trasera","muscle":"Cuádriceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"sentadilla_frontal","name":"Sentadilla frontal","muscle":"Cuádriceps","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"sentadilla_goblet","name":"Sentadilla goblet","muscle":"Cuádriceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"sentadilla_smith","name":"Sentadilla en Smith","muscle":"Cuádriceps","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"hack_squat","name":"Hack squat","muscle":"Cuádriceps","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"prensa_piernas","name":"Prensa de piernas","muscle":"Cuádriceps","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"prensa_unilateral","name":"Prensa unilateral","muscle":"Cuádriceps","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"extension_cuadriceps","name":"Extensión de cuádriceps","muscle":"Cuádriceps","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"zancada_caminando_quads","name":"Zancada caminando","muscle":"Cuádriceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"zancada_inversa_quads","name":"Zancada inversa","muscle":"Cuádriceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"bulgarian_split_squat_quads","name":"Bulgarian split squat","muscle":"Cuádriceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"step_up_quads","name":"Step-up","muscle":"Cuádriceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"split_squat","name":"Split squat","muscle":"Cuádriceps","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"wall_sit","name":"Wall sit","muscle":"Cuádriceps","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"spanish_squat","name":"Spanish squat","muscle":"Cuádriceps","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_rumano_barra","name":"Peso muerto rumano con barra","muscle":"Isquiotibiales","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_rumano_mancuernas","name":"Peso muerto rumano con mancuernas","muscle":"Isquiotibiales","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_piernas_rigidas","name":"Peso muerto piernas rígidas","muscle":"Isquiotibiales","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_femoral_acostado","name":"Curl femoral acostado","muscle":"Isquiotibiales","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_femoral_sentado","name":"Curl femoral sentado","muscle":"Isquiotibiales","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_femoral_de_pie","name":"Curl femoral de pie","muscle":"Isquiotibiales","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_femoral_unilateral","name":"Curl femoral unilateral","muscle":"Isquiotibiales","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"nordic_curl","name":"Nordic curl","muscle":"Isquiotibiales","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"glute_ham_raise","name":"Glute ham raise","muscle":"Isquiotibiales","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"buenos_dias_barra_femorales","name":"Buenos días con barra","muscle":"Isquiotibiales","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"pull_through_polea_femorales","name":"Pull-through en polea","muscle":"Isquiotibiales","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"kettlebell_swing","name":"Kettlebell swing","muscle":"Isquiotibiales","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"single_leg_rdl_femorales","name":"Single-leg Romanian deadlift","muscle":"Isquiotibiales","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"sliding_leg_curl","name":"Sliding leg curl","muscle":"Isquiotibiales","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"curl_femoral_fitball","name":"Curl femoral con fitball","muscle":"Isquiotibiales","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"maquina_aductores","name":"Máquina de aductores","muscle":"Aductores","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"aductor_polea","name":"Aductor en polea","muscle":"Aductores","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"copenhagen_plank","name":"Copenhagen plank","muscle":"Aductores","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"sentadilla_sumo","name":"Sentadilla sumo","muscle":"Aductores","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"peso_muerto_sumo","name":"Peso muerto sumo","muscle":"Aductores","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"zancada_lateral","name":"Zancada lateral","muscle":"Aductores","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"cossack_squat","name":"Cossack squat","muscle":"Aductores","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"squeeze_pelota_rodillas","name":"Squeeze de pelota entre rodillas","muscle":"Aductores","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"prensa_postura_amplia","name":"Prensa con postura amplia","muscle":"Aductores","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"aductor_banda","name":"Aductor con banda","muscle":"Aductores","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"maquina_abductores","name":"Máquina de abductores","muscle":"Abductores","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"abduccion_polea","name":"Abducción en polea","muscle":"Abductores","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"abduccion_banda_pie","name":"Abducción con banda de pie","muscle":"Abductores","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"abduccion_acostado_lateral","name":"Abducción acostado lateral","muscle":"Abductores","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"clamshell","name":"Clamshell","muscle":"Abductores","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"caminata_lateral_banda_abductores","name":"Caminata lateral con banda","muscle":"Abductores","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"monster_walk","name":"Monster walk","muscle":"Abductores","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"fire_hydrants","name":"Fire hydrants","muscle":"Abductores","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"side_plank_abduction","name":"Side plank abduction","muscle":"Abductores","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"step_up_lateral","name":"Step-up lateral","muscle":"Abductores","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_talones_pie","name":"Elevación de talones de pie","muscle":"Pantorrillas","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_talones_maquina","name":"Elevación de talones en máquina","muscle":"Pantorrillas","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_talones_smith","name":"Elevación de talones en Smith","muscle":"Pantorrillas","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_unilateral_talon","name":"Elevación unilateral de talón","muscle":"Pantorrillas","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_talones_prensa","name":"Elevación de talones en prensa","muscle":"Pantorrillas","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_talones_sentado","name":"Elevación de talones sentado","muscle":"Pantorrillas","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_sentado_mancuernas","name":"Elevación sentado con mancuernas","muscle":"Pantorrillas","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"elevacion_sentado_maquina","name":"Elevación sentado en máquina","muscle":"Pantorrillas","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"calf_raise_sentado_unilateral","name":"Calf raise sentado unilateral","muscle":"Pantorrillas","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"tibialis_raise_pared","name":"Tibialis raise contra pared","muscle":"Pantorrillas","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"dorsiflexion_banda","name":"Dorsiflexión con banda","muscle":"Pantorrillas","equipment":"bandas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"caminata_talones","name":"Caminata sobre talones","muscle":"Pantorrillas","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"reverse_calf_raise","name":"Reverse calf raise","muscle":"Pantorrillas","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"encogimientos_barra","name":"Encogimientos con barra","muscle":"Trapecio/Cuello","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"encogimientos_mancuernas","name":"Encogimientos con mancuernas","muscle":"Trapecio/Cuello","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"encogimientos_maquina","name":"Encogimientos en máquina","muscle":"Trapecio/Cuello","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"farmer_walk_trapecio","name":"Farmer walk","muscle":"Trapecio/Cuello","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"trap_bar_carry","name":"Trap bar carry","muscle":"Trapecio/Cuello","equipment":"barra","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"face_pull_trapecio","name":"Face pull","muscle":"Trapecio/Cuello","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"reverse_fly","name":"Reverse fly","muscle":"Trapecio/Cuello","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"reverse_pec_deck_trapecio","name":"Reverse pec deck","muscle":"Trapecio/Cuello","equipment":"maquina","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"y_raise","name":"Y-raise","muscle":"Trapecio/Cuello","equipment":"mancuernas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"wall_slides_trapecio","name":"Wall slides","muscle":"Trapecio/Cuello","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"scapular_pull_ups","name":"Scapular pull-ups","muscle":"Trapecio/Cuello","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"depresion_escapular_polea","name":"Depresión escapular en polea","muscle":"Trapecio/Cuello","equipment":"poleas","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"chin_tucks","name":"Chin tucks","muscle":"Trapecio/Cuello","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"flexion_cervical_isometrica","name":"Flexión cervical isométrica","muscle":"Trapecio/Cuello","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"extension_cervical_isometrica","name":"Extensión cervical isométrica","muscle":"Trapecio/Cuello","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"inclinacion_lateral_isometrica","name":"Inclinación lateral isométrica","muscle":"Trapecio/Cuello","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"},{"id":"movilidad_cervical_suave","name":"Movilidad cervical suave","muscle":"Trapecio/Cuello","equipment":"peso_corporal","startPrompt":"Anatomical 3D model illustration of a highly defined"}];
+    
+    // Embedded prefix groups data
+    const prefixGroups = [{"prefix":"po4d","starts":[{"name":"magnific_anatomical-3d-model-illus_po4d5syehw.png","mtime":1780299922000},{"name":"magnific_anatomical-3d-model-illus_po4dKKlehw.png","mtime":1780283269153.169},{"name":"magnific_anatomical-3d-model-illus_po4dqTIehw.png","mtime":1780283253932.7285}],"ends":[{"name":"magnific_anatomical-3d-model-illus_po4d5Dtehw.png","mtime":1780299982000},{"name":"magnific_anatomical-3d-model-illus_po4drLUehw.png","mtime":1780283947830.273},{"name":"magnific_anatomical-3d-model-illus_po4drYVehw.png","mtime":1780300440000}],"avgTime":1780291802486.0283},{"prefix":"fFYE","starts":[{"name":"magnific_anatomical-3d-model-illus_fFYEO9BCDY.png","mtime":1780300276000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_fFYEyvUCDY.png","mtime":1780284274341.9587}],"avgTime":1780292275170.9795},{"prefix":"43qN","starts":[{"name":"magnific_anatomical-3d-model-illus_43qNe5w9Aa.png","mtime":1780283718467.9744},{"name":"magnific_anatomical-3d-model-illus_43qNenB9Aa.png","mtime":1780299888000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_43qN8aq9Aa.png","mtime":1780300516000},{"name":"magnific_anatomical-3d-model-illus_43qNdJ29Aa.png","mtime":1780284353398.4946},{"name":"magnific_anatomical-3d-model-illus_43qNXnd9Aa.png","mtime":1780300122000}],"avgTime":1780293719573.2937},{"prefix":"brpK","starts":[{"name":"magnific_anatomical-3d-model-illus_brpK6Wj5Y2.png","mtime":1780300044000},{"name":"magnific_anatomical-3d-model-illus_brpK9ZK5Y2.png","mtime":1780299800000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_brpKiK05Y2.png","mtime":1780300104000},{"name":"magnific_anatomical-3d-model-illus_brpKivi5Y2.png","mtime":1780284323046.768},{"name":"magnific_anatomical-3d-model-illus_brpKNQn5Y2.png","mtime":1780299978000},{"name":"magnific_anatomical-3d-model-illus_brpKNXy5Y2.png","mtime":1780299948000},{"name":"magnific_anatomical-3d-model-illus_brpKRrT5Y2.png","mtime":1780284302641.2573},{"name":"magnific_anatomical-3d-model-illus_brpKRVL5Y2.png","mtime":1780284288271.7761}],"avgTime":1780294098494.975},{"prefix":"rloj","starts":[{"name":"magnific_anatomical-3d-model-illus_rlojAGyxtc.png","mtime":1780300148000},{"name":"magnific_anatomical-3d-model-illus_rlojReYxtc.png","mtime":1780283233046.6646}],"ends":[{"name":"magnific_anatomical-3d-model-illus_rloj2M2xtc.png","mtime":1780300044000},{"name":"magnific_anatomical-3d-model-illus_rlojGIcxtc.png","mtime":1780300304000},{"name":"magnific_anatomical-3d-model-illus_rlojngJxtc.png","mtime":1780300464000},{"name":"magnific_anatomical-3d-model-illus_rlojnNjxtc.png","mtime":1780283922655.027},{"name":"magnific_anatomical-3d-model-illus_rlojnUHxtc.png","mtime":1780300470000},{"name":"magnific_anatomical-3d-model-illus_rlojZ8Txtc.png","mtime":1780299944000},{"name":"magnific_anatomical-3d-model-illus_rlojZbvxtc.png","mtime":1780283890510.6692}],"avgTime":1780294713356.929},{"prefix":"mCAv","starts":[{"name":"magnific_anatomical-3d-model-illus_mCAvljwhJQ.png","mtime":1780283346842.7178},{"name":"magnific_anatomical-3d-model-illus_mCAvLpmhJQ.png","mtime":1780299734000},{"name":"magnific_anatomical-3d-model-illus_mCAvlPRhJQ.png","mtime":1780299924000},{"name":"magnific_anatomical-3d-model-illus_mCAvluKhJQ.png","mtime":1780299880000},{"name":"magnific_anatomical-3d-model-illus_mCAvSIahJQ.png","mtime":1780283324221.172},{"name":"magnific_anatomical-3d-model-illus_mCAvSmChJQ.png","mtime":1780300220000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_mCAvg79hJQ.png","mtime":1780300032000},{"name":"magnific_anatomical-3d-model-illus_mCAvlVBhJQ.png","mtime":1780299962000},{"name":"magnific_anatomical-3d-model-illus_mCAvUi2hJQ.png","mtime":1780300292000},{"name":"magnific_anatomical-3d-model-illus_mCAvwlUhJQ.png","mtime":1780284002442.8352},{"name":"magnific_anatomical-3d-model-illus_mCAvwQqhJQ.png","mtime":1780300352000}],"avgTime":1780295551773.3389},{"prefix":"xg8L","starts":[{"name":"magnific_anatomical-3d-model-illus_xg8L2nwjfW.png","mtime":1780299914000},{"name":"magnific_anatomical-3d-model-illus_xg8LGFUjfW.png","mtime":1780283116718.3354},{"name":"magnific_anatomical-3d-model-illus_xg8LGLijfW.png","mtime":1780300104000},{"name":"magnific_anatomical-3d-model-illus_xg8LGWmjfW.png","mtime":1780300154000},{"name":"magnific_anatomical-3d-model-illus_xg8LZ6xjfW.png","mtime":1780299784000},{"name":"magnific_anatomical-3d-model-illus_xg8LZQpjfW.png","mtime":1780299848000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_xg8LGKyjfW.png","mtime":1780300212000},{"name":"magnific_anatomical-3d-model-illus_xg8LnAdjfW.png","mtime":1780283864474.7737},{"name":"magnific_anatomical-3d-model-illus_xg8LnkdjfW.png","mtime":1780283852116.4382},{"name":"magnific_anatomical-3d-model-illus_xg8LYeCjfW.png","mtime":1780300522000},{"name":"magnific_anatomical-3d-model-illus_xg8Lzu0jfW.png","mtime":1780300318000},{"name":"magnific_anatomical-3d-model-illus_xg8LzXFjfW.png","mtime":1780300296000}],"avgTime":1780295998775.7957},{"prefix":"MXyp","starts":[{"name":"magnific_anatomical-3d-model-illus_MXypHmXDCm.png","mtime":1780299770000},{"name":"magnific_anatomical-3d-model-illus_MXypHXVDCm.png","mtime":1780299760000},{"name":"magnific_anatomical-3d-model-illus_MXypqziDCm.png","mtime":1780299970000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_MXyp52PDCm.png","mtime":1780300200000},{"name":"magnific_anatomical-3d-model-illus_MXypk2ODCm.png","mtime":1780283987108.1853},{"name":"magnific_anatomical-3d-model-illus_MXypKxQDCm.png","mtime":1780300276000},{"name":"magnific_anatomical-3d-model-illus_MXypKY6DCm.png","mtime":1780300328000},{"name":"magnific_anatomical-3d-model-illus_MXypKZODCm.png","mtime":1780283970243.4473}],"avgTime":1780296032668.954},{"prefix":"VdOD","starts":[{"name":"magnific_anatomical-3d-model-illus_VdODqFRMMU.png","mtime":1780300020000},{"name":"magnific_anatomical-3d-model-illus_VdODqj0MMU.png","mtime":1780300040000},{"name":"magnific_anatomical-3d-model-illus_VdODqtJMMU.png","mtime":1780300004000},{"name":"magnific_anatomical-3d-model-illus_VdODqW5MMU.png","mtime":1780283180280.1094}],"ends":[{"name":"magnific_anatomical-3d-model-illus_VdODkIgMMU.png","mtime":1780300472000}],"avgTime":1780296743256.022},{"prefix":"Uyf7","starts":[{"name":"magnific_anatomical-3d-model-illus_Uyf70DEwny.png","mtime":1780300032000},{"name":"magnific_anatomical-3d-model-illus_Uyf7WF7wny.png","mtime":1780283194651.9407}],"ends":[{"name":"magnific_anatomical-3d-model-illus_Uyf7MS3wny.png","mtime":1780300454000},{"name":"magnific_anatomical-3d-model-illus_Uyf7Tzowny.png","mtime":1780300136000},{"name":"magnific_anatomical-3d-model-illus_Uyf7Vv1wny.png","mtime":1780300296000}],"avgTime":1780296822530.3882},{"prefix":"vuzf","starts":[{"name":"magnific_anatomical-3d-model-illus_vuzfSuka47.png","mtime":1780283161469.2837},{"name":"magnific_anatomical-3d-model-illus_vuzfUvFa47.png","mtime":1780300100000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_vuzf7z0a47.png","mtime":1780300300000},{"name":"magnific_anatomical-3d-model-illus_vuzfJ1La47.png","mtime":1780300366000},{"name":"magnific_anatomical-3d-model-illus_vuzfJKxa47.png","mtime":1780300360000}],"avgTime":1780296857493.8567},{"prefix":"LUtl","starts":[{"name":"magnific_anatomical-3d-model-illus_LUtl2HbswO.png","mtime":1780299732000},{"name":"magnific_anatomical-3d-model-illus_LUtl2rjswO.png","mtime":1780299748000},{"name":"magnific_anatomical-3d-model-illus_LUtlGeZswO.png","mtime":1780299930000},{"name":"magnific_anatomical-3d-model-illus_LUtlGluswO.png","mtime":1780283369694.591}],"ends":[{"name":"magnific_anatomical-3d-model-illus_LUtlcd6swO.png","mtime":1780284033351.3804},{"name":"magnific_anatomical-3d-model-illus_LUtln7HswO.png","mtime":1780300114000},{"name":"magnific_anatomical-3d-model-illus_LUtln7UswO.png","mtime":1780300114000},{"name":"magnific_anatomical-3d-model-illus_LUtlnKbswO.png","mtime":1780300210000},{"name":"magnific_anatomical-3d-model-illus_LUtlWlxswO.png","mtime":1780300342000},{"name":"magnific_anatomical-3d-model-illus_LUtlYDNswO.png","mtime":1780300282000},{"name":"magnific_anatomical-3d-model-illus_LUtlYkbswO.png","mtime":1780300330000}],"avgTime":1780297109549.6335},{"prefix":"Kjd1","starts":[{"name":"magnific_anatomical-3d-model-illus_Kjd1iGAkqp.png","mtime":1780299918000},{"name":"magnific_anatomical-3d-model-illus_Kjd1R64kqp.png","mtime":1780283533033.3655},{"name":"magnific_anatomical-3d-model-illus_Kjd1RCvkqp.png","mtime":1780300206000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_Kjd1Az3kqp.png","mtime":1780300508000},{"name":"magnific_anatomical-3d-model-illus_Kjd1iavkqp.png","mtime":1780299964000},{"name":"magnific_anatomical-3d-model-illus_Kjd1RrKkqp.png","mtime":1780300106000}],"avgTime":1780297372505.5608},{"prefix":"1sBx","starts":[{"name":"magnific_anatomical-3d-model-illus_1sBx24Yr4r.png","mtime":1780300130000},{"name":"magnific_anatomical-3d-model-illus_1sBx33pr4r.png","mtime":1780299790000},{"name":"magnific_anatomical-3d-model-illus_1sBx3aSr4r.png","mtime":1780299842000},{"name":"magnific_anatomical-3d-model-illus_1sBx3e5r4r.png","mtime":1780283747971.9485},{"name":"magnific_anatomical-3d-model-illus_1sBx3kPr4r.png","mtime":1780299864000},{"name":"magnific_anatomical-3d-model-illus_1sBx3m1r4r.png","mtime":1780299838000},{"name":"magnific_anatomical-3d-model-illus_1sBx3OVr4r.png","mtime":1780299776000},{"name":"magnific_anatomical-3d-model-illus_1sBxAjPr4r.png","mtime":1780300224000},{"name":"magnific_anatomical-3d-model-illus_1sBxAsRr4r.png","mtime":1780300228000},{"name":"magnific_anatomical-3d-model-illus_1sBxRyYr4r.png","mtime":1780299892000},{"name":"magnific_anatomical-3d-model-illus_1sBxZVur4r.png","mtime":1780300046000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_1sBx23Vr4r.png","mtime":1780300142000},{"name":"magnific_anatomical-3d-model-illus_1sBx2uLr4r.png","mtime":1780300204000},{"name":"magnific_anatomical-3d-model-illus_1sBxAMhr4r.png","mtime":1780284443080.95},{"name":"magnific_anatomical-3d-model-illus_1sBxAuSr4r.png","mtime":1780300320000},{"name":"magnific_anatomical-3d-model-illus_1sBxG3pr4r.png","mtime":1780284429943.833},{"name":"magnific_anatomical-3d-model-illus_1sBxGaKr4r.png","mtime":1780300432000},{"name":"magnific_anatomical-3d-model-illus_1sBxRtjr4r.png","mtime":1780299950000}],"avgTime":1780297405499.8184},{"prefix":"CHWu","starts":[{"name":"magnific_anatomical-3d-model-illus_CHWu74nEEy.png","mtime":1780299916000},{"name":"magnific_anatomical-3d-model-illus_CHWuw5wEEy.png","mtime":1780283657638.6282}],"ends":[{"name":"magnific_anatomical-3d-model-illus_CHWuJaKEEy.png","mtime":1780300098000},{"name":"magnific_anatomical-3d-model-illus_CHWuOy2EEy.png","mtime":1780300148000},{"name":"magnific_anatomical-3d-model-illus_CHWuPmQEEy.png","mtime":1780300446000},{"name":"magnific_anatomical-3d-model-illus_CHWuPVoEEy.png","mtime":1780300424000}],"avgTime":1780297448273.1047},{"prefix":"62K3","starts":[{"name":"magnific_anatomical-3d-model-illus_62K38REiJO.png","mtime":1780300106000},{"name":"magnific_anatomical-3d-model-illus_62K3BERiJO.png","mtime":1780299928000},{"name":"magnific_anatomical-3d-model-illus_62K3X5WiJO.png","mtime":1780299826000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_62K3mtwiJO.png","mtime":1780300504000},{"name":"magnific_anatomical-3d-model-illus_62K3mvOiJO.png","mtime":1780284339494.0107},{"name":"magnific_anatomical-3d-model-illus_62K3tf4iJO.png","mtime":1780300398000}],"avgTime":1780297516915.6687},{"prefix":"8vRt","starts":[{"name":"magnific_anatomical-3d-model-illus_8vRtjDdIrU.png","mtime":1780299972000},{"name":"magnific_anatomical-3d-model-illus_8vRtjhfIrU.png","mtime":1780299874000},{"name":"magnific_anatomical-3d-model-illus_8vRtjncIrU.png","mtime":1780283732528.8162},{"name":"magnific_anatomical-3d-model-illus_8vRtjwOIrU.png","mtime":1780299920000},{"name":"magnific_anatomical-3d-model-illus_8vRtjZGIrU.png","mtime":1780299946000},{"name":"magnific_anatomical-3d-model-illus_8vRtLlSIrU.png","mtime":1780300028000},{"name":"magnific_anatomical-3d-model-illus_8vRtlOOIrU.png","mtime":1780300282000},{"name":"magnific_anatomical-3d-model-illus_8vRtLq5IrU.png","mtime":1780300008000},{"name":"magnific_anatomical-3d-model-illus_8vRtLXoIrU.png","mtime":1780300098000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_8vRtgavIrU.png","mtime":1780300348000},{"name":"magnific_anatomical-3d-model-illus_8vRts1rIrU.png","mtime":1780284396945.4194},{"name":"magnific_anatomical-3d-model-illus_8vRtSHQIrU.png","mtime":1780300478000},{"name":"magnific_anatomical-3d-model-illus_8vRtSx1IrU.png","mtime":1780300492000}],"avgTime":1780297659651.8643},{"prefix":"gJvU","starts":[{"name":"magnific_anatomical-3d-model-illus_gJvUcPVSXO.png","mtime":1780300116000},{"name":"magnific_anatomical-3d-model-illus_gJvUcx3SXO.png","mtime":1780300212000},{"name":"magnific_anatomical-3d-model-illus_gJvUn38SXO.png","mtime":1780299776000},{"name":"magnific_anatomical-3d-model-illus_gJvUnEJSXO.png","mtime":1780299834000},{"name":"magnific_anatomical-3d-model-illus_gJvUngUSXO.png","mtime":1780299866000},{"name":"magnific_anatomical-3d-model-illus_gJvUnq9SXO.png","mtime":1780299844000},{"name":"magnific_anatomical-3d-model-illus_gJvUnVHSXO.png","mtime":1780299802000},{"name":"magnific_anatomical-3d-model-illus_gJvUWOTSXO.png","mtime":1780283616658.105}],"ends":[{"name":"magnific_anatomical-3d-model-illus_gJvU07USXO.png","mtime":1780300224000},{"name":"magnific_anatomical-3d-model-illus_gJvUc28SXO.png","mtime":1780300134000},{"name":"magnific_anatomical-3d-model-illus_gJvUTpVSXO.png","mtime":1780300396000},{"name":"magnific_anatomical-3d-model-illus_gJvUVWmSXO.png","mtime":1780284259474.7097},{"name":"magnific_anatomical-3d-model-illus_gJvUVywSXO.png","mtime":1780300466000},{"name":"magnific_anatomical-3d-model-illus_gJvUYuQSXO.png","mtime":1780299954000}],"avgTime":1780297750009.4866},{"prefix":"hEGa","starts":[{"name":"magnific_anatomical-3d-model-illus_hEGalzjvqL.png","mtime":1780299828000},{"name":"magnific_anatomical-3d-model-illus_hEGaSqcvqL.png","mtime":1780300002000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_hEGa7LpvqL.png","mtime":1780300376000},{"name":"magnific_anatomical-3d-model-illus_hEGa7UovqL.png","mtime":1780284247789.8447},{"name":"magnific_anatomical-3d-model-illus_hEGagXPvqL.png","mtime":1780299972000},{"name":"magnific_anatomical-3d-model-illus_hEGaSmivqL.png","mtime":1780300100000},{"name":"magnific_anatomical-3d-model-illus_hEGaUtNvqL.png","mtime":1780300216000}],"avgTime":1780297820255.692},{"prefix":"IaZm","starts":[{"name":"magnific_anatomical-3d-model-illus_IaZmjBctvE.png","mtime":1780299862000},{"name":"magnific_anatomical-3d-model-illus_IaZmsmVtvE.png","mtime":1780299988000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_IaZmg9jtvE.png","mtime":1780300288000},{"name":"magnific_anatomical-3d-model-illus_IaZmLVZtvE.png","mtime":1780299964000},{"name":"magnific_anatomical-3d-model-illus_IaZmSQdtvE.png","mtime":1780300358000},{"name":"magnific_anatomical-3d-model-illus_IaZmswKtvE.png","mtime":1780284234370.1455},{"name":"magnific_anatomical-3d-model-illus_IaZmUCMtvE.png","mtime":1780300468000}],"avgTime":1780297880338.592},{"prefix":"oh3I","starts":[{"name":"magnific_anatomical-3d-model-illus_oh3ILaI829.png","mtime":1780283283644.5718},{"name":"magnific_anatomical-3d-model-illus_oh3ILcG829.png","mtime":1780300200000},{"name":"magnific_anatomical-3d-model-illus_oh3IrO7829.png","mtime":1780299812000},{"name":"magnific_anatomical-3d-model-illus_oh3IrzA829.png","mtime":1780299840000},{"name":"magnific_anatomical-3d-model-illus_oh3IxrK829.png","mtime":1780299904000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_oh3IlbC829.png","mtime":1780300368000},{"name":"magnific_anatomical-3d-model-illus_oh3IlMn829.png","mtime":1780300442000},{"name":"magnific_anatomical-3d-model-illus_oh3IlRP829.png","mtime":1780300418000}],"avgTime":1780298033455.5715},{"prefix":"9Rb6","starts":[{"name":"magnific_anatomical-3d-model-illus_9Rb6B8LNYZ.png","mtime":1780300150000},{"name":"magnific_anatomical-3d-model-illus_9Rb6dqiNYZ.png","mtime":1780299940000},{"name":"magnific_anatomical-3d-model-illus_9Rb6eBsNYZ.png","mtime":1780299796000},{"name":"magnific_anatomical-3d-model-illus_9Rb6eXLNYZ.png","mtime":1780299794000},{"name":"magnific_anatomical-3d-model-illus_9Rb6ohgNYZ.png","mtime":1780300280000},{"name":"magnific_anatomical-3d-model-illus_9Rb6XiINYZ.png","mtime":1780299990000},{"name":"magnific_anatomical-3d-model-illus_9Rb6XRmNYZ.png","mtime":1780299992000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_9Rb68OVNYZ.png","mtime":1780284371543.7766}],"avgTime":1780298039192.9722},{"prefix":"l7hS","starts":[{"name":"magnific_anatomical-3d-model-illus_l7hSncSgv9.png","mtime":1780299912000},{"name":"magnific_anatomical-3d-model-illus_l7hSnHTgv9.png","mtime":1780299962000},{"name":"magnific_anatomical-3d-model-illus_l7hSnXLgv9.png","mtime":1780299930000},{"name":"magnific_anatomical-3d-model-illus_l7hSWNFgv9.png","mtime":1780300124000},{"name":"magnific_anatomical-3d-model-illus_l7hSYMKgv9.png","mtime":1780300036000},{"name":"magnific_anatomical-3d-model-illus_l7hSYV5gv9.png","mtime":1780300034000},{"name":"magnific_anatomical-3d-model-illus_l7hSzJEgv9.png","mtime":1780283393457.4517},{"name":"magnific_anatomical-3d-model-illus_l7hSzPFgv9.png","mtime":1780299768000},{"name":"magnific_anatomical-3d-model-illus_l7hSzR1gv9.png","mtime":1780299782000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_l7hS0bNgv9.png","mtime":1780284185929.0955},{"name":"magnific_anatomical-3d-model-illus_l7hS0Qygv9.png","mtime":1780300428000},{"name":"magnific_anatomical-3d-model-illus_l7hS0tNgv9.png","mtime":1780300412000},{"name":"magnific_anatomical-3d-model-illus_l7hScDwgv9.png","mtime":1780300278000},{"name":"magnific_anatomical-3d-model-illus_l7hScQngv9.png","mtime":1780300314000},{"name":"magnific_anatomical-3d-model-illus_l7hSWVbgv9.png","mtime":1780300154000},{"name":"magnific_anatomical-3d-model-illus_l7hSYDkgv9.png","mtime":1780300038000}],"avgTime":1780298046961.6592},{"prefix":"iAkR","starts":[{"name":"magnific_anatomical-3d-model-illus_iAkR8fQ3uK.png","mtime":1780283595288.0022},{"name":"magnific_anatomical-3d-model-illus_iAkRBH13uK.png","mtime":1780299818000},{"name":"magnific_anatomical-3d-model-illus_iAkRIcV3uK.png","mtime":1780300120000},{"name":"magnific_anatomical-3d-model-illus_iAkRIWT3uK.png","mtime":1780300118000},{"name":"magnific_anatomical-3d-model-illus_iAkRoRz3uK.png","mtime":1780299870000},{"name":"magnific_anatomical-3d-model-illus_iAkRtuF3uK.png","mtime":1780300284000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_iAkRmMD3uK.png","mtime":1780300366000},{"name":"magnific_anatomical-3d-model-illus_iAkRmWc3uK.png","mtime":1780300356000}],"avgTime":1780298065911.0002},{"prefix":"WMU0","starts":[{"name":"magnific_anatomical-3d-model-illus_WMU0CKRcXe.png","mtime":1780299808000},{"name":"magnific_anatomical-3d-model-illus_WMU0EekcXe.png","mtime":1780283136459.913}],"ends":[{"name":"magnific_anatomical-3d-model-illus_WMU0E4dcXe.png","mtime":1780299958000},{"name":"magnific_anatomical-3d-model-illus_WMU0FVQcXe.png","mtime":1780300226000},{"name":"magnific_anatomical-3d-model-illus_WMU0H3XcXe.png","mtime":1780300438000},{"name":"magnific_anatomical-3d-model-illus_WMU0HhLcXe.png","mtime":1780300372000},{"name":"magnific_anatomical-3d-model-illus_WMU0q1NcXe.png","mtime":1780300514000},{"name":"magnific_anatomical-3d-model-illus_WMU0Q8xcXe.png","mtime":1780300126000}],"avgTime":1780298072307.4893},{"prefix":"kLXr","starts":[{"name":"magnific_anatomical-3d-model-illus_kLXr3ED16B.png","mtime":1780299968000},{"name":"magnific_anatomical-3d-model-illus_kLXr3HX16B.png","mtime":1780299976000},{"name":"magnific_anatomical-3d-model-illus_kLXr3KC16B.png","mtime":1780299984000},{"name":"magnific_anatomical-3d-model-illus_kLXr6aM16B.png","mtime":1780299726000},{"name":"magnific_anatomical-3d-model-illus_kLXr6kQ16B.png","mtime":1780283513252.835},{"name":"magnific_anatomical-3d-model-illus_kLXriAw16B.png","mtime":1780299798000},{"name":"magnific_anatomical-3d-model-illus_kLXrRWi16B.png","mtime":1780300038000},{"name":"magnific_anatomical-3d-model-illus_kLXrZOx16B.png","mtime":1780300126000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_kLXr2ko16B.png","mtime":1780300338000},{"name":"magnific_anatomical-3d-model-illus_kLXr2mz16B.png","mtime":1780300312000},{"name":"magnific_anatomical-3d-model-illus_kLXr3E816B.png","mtime":1780299968000},{"name":"magnific_anatomical-3d-model-illus_kLXr3mW16B.png","mtime":1780299956000},{"name":"magnific_anatomical-3d-model-illus_kLXrAjE16B.png","mtime":1780284206646.9133},{"name":"magnific_anatomical-3d-model-illus_kLXrAsh16B.png","mtime":1780300350000},{"name":"magnific_anatomical-3d-model-illus_kLXrGA716B.png","mtime":1780300502000},{"name":"magnific_anatomical-3d-model-illus_kLXrGwb16B.png","mtime":1780300476000}],"avgTime":1780298077368.7344},{"prefix":"dINB","starts":[{"name":"magnific_anatomical-3d-model-illus_dINB5enXSL.png","mtime":1780299750000},{"name":"magnific_anatomical-3d-model-illus_dINBkn4XSL.png","mtime":1780299964000},{"name":"magnific_anatomical-3d-model-illus_dINBKPLXSL.png","mtime":1780283640761.3538},{"name":"magnific_anatomical-3d-model-illus_dINBrIWXSL.png","mtime":1780300110000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_dINBjSQXSL.png","mtime":1780300398000},{"name":"magnific_anatomical-3d-model-illus_dINBkGyXSL.png","mtime":1780299960000},{"name":"magnific_anatomical-3d-model-illus_dINBLHdXSL.png","mtime":1780300486000},{"name":"magnific_anatomical-3d-model-illus_dINBx09XSL.png","mtime":1780300326000}],"avgTime":1780298079345.1692},{"prefix":"aQnC","starts":[{"name":"magnific_anatomical-3d-model-illus_aQnC7x7fSh.png","mtime":1780300130000},{"name":"magnific_anatomical-3d-model-illus_aQnCSNWfSh.png","mtime":1780283702123.9106}],"ends":[{"name":"magnific_anatomical-3d-model-illus_aQnC75lfSh.png","mtime":1780300120000},{"name":"magnific_anatomical-3d-model-illus_aQnC7FxfSh.png","mtime":1780300112000},{"name":"magnific_anatomical-3d-model-illus_aQnC7KgfSh.png","mtime":1780300120000},{"name":"magnific_anatomical-3d-model-illus_aQnCJmQfSh.png","mtime":1780300332000},{"name":"magnific_anatomical-3d-model-illus_aQnCU8QfSh.png","mtime":1780299972000},{"name":"magnific_anatomical-3d-model-illus_aQnCyP3fSh.png","mtime":1780300508000}],"avgTime":1780298124515.4888},{"prefix":"Xt6o","starts":[{"name":"magnific_anatomical-3d-model-illus_Xt6o12gBfo.png","mtime":1780299954000},{"name":"magnific_anatomical-3d-model-illus_Xt6o1a0Bfo.png","mtime":1780299884000},{"name":"magnific_anatomical-3d-model-illus_Xt6ok6jBfo.png","mtime":1780299828000},{"name":"magnific_anatomical-3d-model-illus_Xt6oKV6Bfo.png","mtime":1780299740000},{"name":"magnific_anatomical-3d-model-illus_Xt6oxTyBfo.png","mtime":1780283101118.6345}],"ends":[{"name":"magnific_anatomical-3d-model-illus_Xt6oj7uBfo.png","mtime":1780300284000},{"name":"magnific_anatomical-3d-model-illus_Xt6oLLtBfo.png","mtime":1780300388000},{"name":"magnific_anatomical-3d-model-illus_Xt6oLx8Bfo.png","mtime":1780300384000},{"name":"magnific_anatomical-3d-model-illus_Xt6osQ0Bfo.png","mtime":1780300482000}],"avgTime":1780298227235.4038},{"prefix":"5xek","starts":[{"name":"magnific_anatomical-3d-model-illus_5xek6qIKxe.png","mtime":1780299982000},{"name":"magnific_anatomical-3d-model-illus_5xek6V3Kxe.png","mtime":1780299936000},{"name":"magnific_anatomical-3d-model-illus_5xek6yrKxe.png","mtime":1780299896000},{"name":"magnific_anatomical-3d-model-illus_5xekNGyKxe.png","mtime":1780299804000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_5xek2P5Kxe.png","mtime":1780300488000},{"name":"magnific_anatomical-3d-model-illus_5xek2Y7Kxe.png","mtime":1780300514000},{"name":"magnific_anatomical-3d-model-illus_5xek6eAKxe.png","mtime":1780299944000},{"name":"magnific_anatomical-3d-model-illus_5xekRoGKxe.png","mtime":1780300308000},{"name":"magnific_anatomical-3d-model-illus_5xekZ1tKxe.png","mtime":1780284413156.6052}],"avgTime":1780298365017.4006},{"prefix":"NZ5i","starts":[{"name":"magnific_anatomical-3d-model-illus_NZ5i8R86D9.png","mtime":1780300226000},{"name":"magnific_anatomical-3d-model-illus_NZ5id1A6D9.png","mtime":1780299832000},{"name":"magnific_anatomical-3d-model-illus_NZ5idJp6D9.png","mtime":1780283298566.4941},{"name":"magnific_anatomical-3d-model-illus_NZ5idOe6D9.png","mtime":1780299856000},{"name":"magnific_anatomical-3d-model-illus_NZ5ioza6D9.png","mtime":1780300118000},{"name":"magnific_anatomical-3d-model-illus_NZ5iXXx6D9.png","mtime":1780299908000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_NZ5i8b96D9.png","mtime":1780300298000},{"name":"magnific_anatomical-3d-model-illus_NZ5i8E76D9.png","mtime":1780300288000},{"name":"magnific_anatomical-3d-model-illus_NZ5iIr36D9.png","mtime":1780300422000},{"name":"magnific_anatomical-3d-model-illus_NZ5io0Q6D9.png","mtime":1780300128000},{"name":"magnific_anatomical-3d-model-illus_NZ5itid6D9.png","mtime":1780300458000}],"avgTime":1780298621142.4084},{"prefix":"jSIs","starts":[{"name":"magnific_anatomical-3d-model-illus_jSIs2PiLD0.png","mtime":1780299772000},{"name":"magnific_anatomical-3d-model-illus_jSIs2ubLD0.png","mtime":1780299846000},{"name":"magnific_anatomical-3d-model-illus_jSIsAyNLD0.png","mtime":1780299886000},{"name":"magnific_anatomical-3d-model-illus_jSIsGRALD0.png","mtime":1780300016000},{"name":"magnific_anatomical-3d-model-illus_jSIsGY0LD0.png","mtime":1780300030000},{"name":"magnific_anatomical-3d-model-illus_jSIsngSLD0.png","mtime":1780300224000},{"name":"magnific_anatomical-3d-model-illus_jSIszPULD0.png","mtime":1780300122000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_jSIsnSULD0.png","mtime":1780300228000},{"name":"magnific_anatomical-3d-model-illus_jSIsWpnLD0.png","mtime":1780300518000},{"name":"magnific_anatomical-3d-model-illus_jSIsYCCLD0.png","mtime":1780284222474.5186},{"name":"magnific_anatomical-3d-model-illus_jSIszqCLD0.png","mtime":1780300208000}],"avgTime":1780298642952.229},{"prefix":"swmg","starts":[{"name":"magnific_anatomical-3d-model-illus_swmgGSPl8e.png","mtime":1780283211206.0261},{"name":"magnific_anatomical-3d-model-illus_swmgnRzl8e.png","mtime":1780300014000},{"name":"magnific_anatomical-3d-model-illus_swmgny6l8e.png","mtime":1780300000000},{"name":"magnific_anatomical-3d-model-illus_swmgnZnl8e.png","mtime":1780300014000},{"name":"magnific_anatomical-3d-model-illus_swmgWd4l8e.png","mtime":1780300286000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_swmg0AGl8e.png","mtime":1780300490000},{"name":"magnific_anatomical-3d-model-illus_swmgcbKl8e.png","mtime":1780300440000},{"name":"magnific_anatomical-3d-model-illus_swmgcdPl8e.png","mtime":1780300404000},{"name":"magnific_anatomical-3d-model-illus_swmgcs8l8e.png","mtime":1780300456000},{"name":"magnific_anatomical-3d-model-illus_swmgYGLl8e.png","mtime":1780300142000},{"name":"magnific_anatomical-3d-model-illus_swmgYKxl8e.png","mtime":1780300210000}],"avgTime":1780298697018.7297},{"prefix":"YVSc","starts":[{"name":"magnific_anatomical-3d-model-illus_YVScETLWeC.png","mtime":1780299992000},{"name":"magnific_anatomical-3d-model-illus_YVScfTlWeC.png","mtime":1780299758000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_YVScC3FWeC.png","mtime":1780299970000}],"avgTime":1780299906666.6667},{"prefix":"74EO","starts":[{"name":"magnific_anatomical-3d-model-illus_74EO0uHJAL.png","mtime":1780299830000},{"name":"magnific_anatomical-3d-model-illus_74EOcg7JAL.png","mtime":1780299744000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_74EOpk5JAL.png","mtime":1780300434000}],"avgTime":1780300002666.6667},{"prefix":"DBPe","starts":[{"name":"magnific_anatomical-3d-model-illus_DBPe5Uapcl.png","mtime":1780300046000},{"name":"magnific_anatomical-3d-model-illus_DBPeb6Kpcl.png","mtime":1780299952000},{"name":"magnific_anatomical-3d-model-illus_DBPeK8ipcl.png","mtime":1780300114000},{"name":"magnific_anatomical-3d-model-illus_DBPeqCcpcl.png","mtime":1780299778000},{"name":"magnific_anatomical-3d-model-illus_DBPeqzgpcl.png","mtime":1780299850000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_DBPe1a2pcl.png","mtime":1780300364000},{"name":"magnific_anatomical-3d-model-illus_DBPe1gIpcl.png","mtime":1780300402000},{"name":"magnific_anatomical-3d-model-illus_DBPe5LIpcl.png","mtime":1780300036000},{"name":"magnific_anatomical-3d-model-illus_DBPeb9bpcl.png","mtime":1780299946000}],"avgTime":1780300054222.2222},{"prefix":"wPCJ","starts":[{"name":"magnific_anatomical-3d-model-illus_wPCJVwj7EI.png","mtime":1780300222000},{"name":"magnific_anatomical-3d-model-illus_wPCJWkb7EI.png","mtime":1780299730000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_wPCJMhd7EI.png","mtime":1780300294000}],"avgTime":1780300082000},{"prefix":"0p7V","starts":[{"name":"magnific_anatomical-3d-model-illus_0p7VuC6TfW.png","mtime":1780299786000},{"name":"magnific_anatomical-3d-model-illus_0p7VukYTfW.png","mtime":1780299806000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_0p7VbBLTfW.png","mtime":1780300354000},{"name":"magnific_anatomical-3d-model-illus_0p7VbKZTfW.png","mtime":1780300392000}],"avgTime":1780300084500},{"prefix":"EqcQ","starts":[{"name":"magnific_anatomical-3d-model-illus_EqcQJILuuO.png","mtime":1780299968000},{"name":"magnific_anatomical-3d-model-illus_EqcQJjAuuO.png","mtime":1780299890000},{"name":"magnific_anatomical-3d-model-illus_EqcQJp5uuO.png","mtime":1780299954000},{"name":"magnific_anatomical-3d-model-illus_EqcQPNpuuO.png","mtime":1780300274000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_EqcQOE7uuO.png","mtime":1780300102000},{"name":"magnific_anatomical-3d-model-illus_EqcQPtxuuO.png","mtime":1780300324000},{"name":"magnific_anatomical-3d-model-illus_EqcQysAuuO.png","mtime":1780300130000}],"avgTime":1780300091714.2856},{"prefix":"Bmi8","starts":[{"name":"magnific_anatomical-3d-model-illus_Bmi81VroQR.png","mtime":1780299854000},{"name":"magnific_anatomical-3d-model-illus_Bmi8jMkoQR.png","mtime":1780300210000},{"name":"magnific_anatomical-3d-model-illus_Bmi8rP8oQR.png","mtime":1780299932000},{"name":"magnific_anatomical-3d-model-illus_Bmi8rpjoQR.png","mtime":1780299978000},{"name":"magnific_anatomical-3d-model-illus_Bmi8rxWoQR.png","mtime":1780299910000},{"name":"magnific_anatomical-3d-model-illus_Bmi8xkGoQR.png","mtime":1780300020000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_Bmi8jXLoQR.png","mtime":1780300218000},{"name":"magnific_anatomical-3d-model-illus_Bmi8sq6oQR.png","mtime":1780300370000},{"name":"magnific_anatomical-3d-model-illus_Bmi8svwoQR.png","mtime":1780300350000}],"avgTime":1780300093555.5557},{"prefix":"J9uy","starts":[{"name":"magnific_anatomical-3d-model-illus_J9uy0ssOq4.png","mtime":1780299738000},{"name":"magnific_anatomical-3d-model-illus_J9uyDczOq4.png","mtime":1780300138000},{"name":"magnific_anatomical-3d-model-illus_J9uyVnGOq4.png","mtime":1780299894000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_J9uyehBOq4.png","mtime":1780300406000},{"name":"magnific_anatomical-3d-model-illus_J9uypLkOq4.png","mtime":1780300324000}],"avgTime":1780300100000},{"prefix":"PiH9","starts":[{"name":"magnific_anatomical-3d-model-illus_PiH9d0242C.png","mtime":1780300132000},{"name":"magnific_anatomical-3d-model-illus_PiH9en342C.png","mtime":1780300006000},{"name":"magnific_anatomical-3d-model-illus_PiH9Mgj42C.png","mtime":1780299734000},{"name":"magnific_anatomical-3d-model-illus_PiH9piy42C.png","mtime":1780299878000},{"name":"magnific_anatomical-3d-model-illus_PiH9pMY42C.png","mtime":1780299902000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_PiH9BFt42C.png","mtime":1780300416000},{"name":"magnific_anatomical-3d-model-illus_PiH9BnN42C.png","mtime":1780300362000},{"name":"magnific_anatomical-3d-model-illus_PiH9dyl42C.png","mtime":1780300220000},{"name":"magnific_anatomical-3d-model-illus_PiH9Xmp42C.png","mtime":1780300280000}],"avgTime":1780300103333.3333},{"prefix":"nTgW","starts":[{"name":"magnific_anatomical-3d-model-illus_nTgWaroYQD.png","mtime":1780299816000},{"name":"magnific_anatomical-3d-model-illus_nTgWENHYQD.png","mtime":1780300202000},{"name":"magnific_anatomical-3d-model-illus_nTgWfwfYQD.png","mtime":1780299950000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_nTgWFcLYQD.png","mtime":1780300460000}],"avgTime":1780300107000},{"prefix":"TeJM","starts":[{"name":"magnific_anatomical-3d-model-illus_TeJMF67VNR.png","mtime":1780299958000},{"name":"magnific_anatomical-3d-model-illus_TeJMFC8VNR.png","mtime":1780299898000},{"name":"magnific_anatomical-3d-model-illus_TeJMFJLVNR.png","mtime":1780299944000},{"name":"magnific_anatomical-3d-model-illus_TeJMHn6VNR.png","mtime":1780300094000},{"name":"magnific_anatomical-3d-model-illus_TeJMqFtVNR.png","mtime":1780300142000},{"name":"magnific_anatomical-3d-model-illus_TeJMQFvVNR.png","mtime":1780299792000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_TeJM5KvVNR.png","mtime":1780300390000},{"name":"magnific_anatomical-3d-model-illus_TeJMKoYVNR.png","mtime":1780300472000},{"name":"magnific_anatomical-3d-model-illus_TeJMq2yVNR.png","mtime":1780300204000},{"name":"magnific_anatomical-3d-model-illus_TeJMqY6VNR.png","mtime":1780300214000}],"avgTime":1780300110800},{"prefix":"ub0F","starts":[{"name":"magnific_anatomical-3d-model-illus_ub0FyyCQLD.png","mtime":1780300024000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_ub0F4FnQLD.png","mtime":1780300222000},{"name":"magnific_anatomical-3d-model-illus_ub0F4XOQLD.png","mtime":1780300316000},{"name":"magnific_anatomical-3d-model-illus_ub0FyvZQLD.png","mtime":1780300092000}],"avgTime":1780300163500},{"prefix":"3G1Z","starts":[{"name":"magnific_anatomical-3d-model-illus_3G1Zo90REY.png","mtime":1780299860000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_3G1ZvmFREY.png","mtime":1780300500000}],"avgTime":1780300180000},{"prefix":"ONQP","starts":[{"name":"magnific_anatomical-3d-model-illus_ONQPDzgynm.png","mtime":1780300010000},{"name":"magnific_anatomical-3d-model-illus_ONQPVhYynm.png","mtime":1780299814000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_ONQPeLIynm.png","mtime":1780300322000},{"name":"magnific_anatomical-3d-model-illus_ONQPeqMynm.png","mtime":1780300304000},{"name":"magnific_anatomical-3d-model-illus_ONQPXGxynm.png","mtime":1780300480000}],"avgTime":1780300186000},{"prefix":"e89X","starts":[{"name":"magnific_anatomical-3d-model-illus_e89XKy1dqL.png","mtime":1780299938000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_e89XjoZdqL.png","mtime":1780300462000},{"name":"magnific_anatomical-3d-model-illus_e89Xr8GdqL.png","mtime":1780300228000}],"avgTime":1780300209333.3333},{"prefix":"SOaw","starts":[{"name":"magnific_anatomical-3d-model-illus_SOaw0AbUb8.png","mtime":1780300134000},{"name":"magnific_anatomical-3d-model-illus_SOaw0MlUb8.png","mtime":1780300152000},{"name":"magnific_anatomical-3d-model-illus_SOawcPaUb8.png","mtime":1780299996000},{"name":"magnific_anatomical-3d-model-illus_SOawWsDUb8.png","mtime":1780299978000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_SOaw00jUb8.png","mtime":1780300148000},{"name":"magnific_anatomical-3d-model-illus_SOaw01YUb8.png","mtime":1780300206000},{"name":"magnific_anatomical-3d-model-illus_SOaw02qUb8.png","mtime":1780300132000},{"name":"magnific_anatomical-3d-model-illus_SOaw0OoUb8.png","mtime":1780300110000},{"name":"magnific_anatomical-3d-model-illus_SOawcXJUb8.png","mtime":1780300040000},{"name":"magnific_anatomical-3d-model-illus_SOawMexUb8.png","mtime":1780300512000},{"name":"magnific_anatomical-3d-model-illus_SOawTgdUb8.png","mtime":1780300336000},{"name":"magnific_anatomical-3d-model-illus_SOawToJUb8.png","mtime":1780300286000},{"name":"magnific_anatomical-3d-model-illus_SOawVE9Ub8.png","mtime":1780300422000},{"name":"magnific_anatomical-3d-model-illus_SOawVFiUb8.png","mtime":1780300426000},{"name":"magnific_anatomical-3d-model-illus_SOawVGqUb8.png","mtime":1780300374000}],"avgTime":1780300216800},{"prefix":"cDwT","starts":[{"name":"magnific_anatomical-3d-model-illus_cDwTu3Q0eP.png","mtime":1780299964000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_cDwTbF30eP.png","mtime":1780300500000},{"name":"magnific_anatomical-3d-model-illus_cDwTqlM0eP.png","mtime":1780300408000}],"avgTime":1780300290666.6667},{"prefix":"y6F4","starts":[{"name":"magnific_anatomical-3d-model-illus_y6F4dtbPW9.png","mtime":1780300280000},{"name":"magnific_anatomical-3d-model-illus_y6F4e6TPW9.png","mtime":1780300110000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_y6F4BDhPW9.png","mtime":1780300494000},{"name":"magnific_anatomical-3d-model-illus_y6F4dJAPW9.png","mtime":1780300334000}],"avgTime":1780300304500},{"prefix":"tf2h","starts":[{"name":"magnific_anatomical-3d-model-illus_tf2hg5ymZJ.png","mtime":1780300128000}],"ends":[{"name":"magnific_anatomical-3d-model-illus_tf2hww2mZJ.png","mtime":1780300506000}],"avgTime":1780300317000}];
+    
+    // Active states
+    let selectedExerciseId = null;
+    let selectedStartFile = null;
+    let selectedEndFile = null;
+    let currentBatchPrefix = null;
+    
+    // Mapping storage
+    let mapping = {};
+    
+    // Load local storage if exists
+    if (localStorage.getItem('coach_visual_mapping')) {
+      try {
+        mapping = JSON.parse(localStorage.getItem('coach_visual_mapping'));
+      } catch(e) {}
+    }
+    
+    // Initialize
+    window.onload = () => {
+      renderExercisesList();
+      updateProgress();
+    };
+    
+    const renderExercisesList = () => {
+      const container = document.getElementById('exercises-container');
+      container.innerHTML = '';
+      
+      exercises.forEach(ex => {
+        const isMatched = !!mapping[ex.id];
+        const isActive = selectedExerciseId === ex.id;
+        
+        const card = document.createElement('div');
+        card.className = isActive 
+          ? 'p-3 rounded-lg border cursor-pointer flex items-center justify-between transition duration-150 bg-orange-950/20 border-orange-600 text-white'
+          : isMatched 
+            ? 'p-3 rounded-lg border cursor-pointer flex items-center justify-between transition duration-150 bg-[#1a1a1f]/40 border-[#242429] text-gray-400 hover:bg-[#1a1a1f]/70'
+            : 'p-3 rounded-lg border cursor-pointer flex items-center justify-between transition duration-150 bg-[#151518] border-[#202024] text-gray-200 hover:bg-[#1b1b20]';
+            
+        card.onclick = () => selectExercise(ex.id);
+        
+        card.innerHTML = `
+          <div class="flex flex-col overflow-hidden max-w-[280px]">
+            <span class="text-xs uppercase tracking-wider font-extrabold text-orange-500/80 mb-0.5">${ex.muscle}</span>
+            <span class="text-sm font-bold truncate">${ex.name}</span>
+          </div>
+          <div class="shrink-0 flex items-center gap-1">
+            ${isMatched ? '<i class="fa-solid fa-circle-check text-green-500"></i>' : '<i class="fa-regular fa-circle text-gray-600"></i>'}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    };
+    
+    const filterExercises = () => {
+      const query = document.getElementById('search-exercise').value.toLowerCase();
+      const cards = document.getElementById('exercises-container').children;
+      
+      exercises.forEach((ex, idx) => {
+        const card = cards[idx];
+        const match = ex.name.toLowerCase().includes(query) || ex.muscle.toLowerCase().includes(query);
+        if (match) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    };
+    
+    const selectExercise = (id) => {
+      selectedExerciseId = id;
+      renderExercisesList();
+      
+      const ex = exercises.find(e => e.id === id);
+      document.getElementById('no-selected-exercise').classList.add('hidden');
+      document.getElementById('workspace-container').classList.remove('hidden');
+      
+      document.getElementById('selected-name').textContent = ex.name;
+      document.getElementById('selected-muscle').textContent = ex.muscle;
+      document.getElementById('selected-equipment').innerHTML = `<i class="fa-solid fa-cube"></i> ${ex.equipment}`;
+      document.getElementById('selected-prompt').textContent = ex.startPrompt;
+      
+      // Load current selection if exists in mapping
+      if (mapping[id]) {
+        selectedStartFile = mapping[id].start;
+        selectedEndFile = mapping[id].end;
+        renderSpot('start', selectedStartFile);
+        renderSpot('end', selectedEndFile);
+      } else {
+        selectedStartFile = null;
+        selectedEndFile = null;
+        resetSpot('start');
+        resetSpot('end');
+      }
+      
+      updateSaveButton();
+    };
+    
+    const renderSpot = (type, filename) => {
+      const spot = document.getElementById(`spot-${type}`);
+      const folder = type === 'start' ? 'raw_inicio' : 'raw_fin';
+      spot.innerHTML = `
+        <div class="relative w-full h-full group flex flex-col items-center">
+          <img src="/${folder}/${filename}" class="w-full h-full object-contain rounded-lg">
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-150 rounded-lg">
+            <span class="bg-orange-600 text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-1">
+              <i class="fa-solid fa-arrows-rotate"></i> Cambiar Foto
+            </span>
+          </div>
+          <div class="absolute bottom-2 left-2 bg-black/80 px-2 py-1 rounded text-[10px] font-mono text-gray-400">
+            ${filename.split('_').pop()}
+          </div>
+        </div>
+      `;
+      spot.className = "border-2 border-orange-500 bg-black rounded-xl p-1 relative flex items-center justify-center cursor-pointer h-[320px]";
+    };
+    
+    const resetSpot = (type) => {
+      const spot = document.getElementById(`spot-${type}`);
+      spot.innerHTML = `
+        <i class="fa-solid fa-image text-3xl text-gray-600 mb-2 animate-pulse"></i>
+        <span class="text-sm font-semibold text-gray-400">FOTO ${type === 'start' ? 'INICIO' : 'FIN'}</span>
+        <span class="text-xs text-gray-600 mt-1">Haz clic para seleccionar</span>
+      `;
+      spot.className = "border-2 border-dashed border-[#2d2d35] hover:border-orange-500/50 bg-[#121215] rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer transition duration-150 h-[320px]";
+    };
+    
+    const clearCurrentSelection = () => {
+      selectedStartFile = null;
+      selectedEndFile = null;
+      resetSpot('start');
+      resetSpot('end');
+      updateSaveButton();
+    };
+    
+    const updateSaveButton = () => {
+      const btn = document.getElementById('btn-save-match');
+      if (selectedStartFile && selectedEndFile) {
+        btn.disabled = false;
+      } else {
+        btn.disabled = true;
+      }
+    };
+    
+    // Modal drawer operations
+    let modalActiveType = 'start';
+    
+    const openBatchSelector = (type) => {
+      modalActiveType = type;
+      document.getElementById('modal-type').textContent = type === 'start' ? 'INICIO' : 'FIN';
+      document.getElementById('selector-modal').classList.remove('hidden');
+      
+      renderModalBatches();
+      
+      // Auto select current active batch prefix if we have a selection
+      const activeFile = type === 'start' ? selectedStartFile : selectedEndFile;
+      if (activeFile) {
+        selectBatchForModal(getPrefix(activeFile));
+      } else if (currentBatchPrefix) {
+        selectBatchForModal(currentBatchPrefix);
+      } else {
+        selectBatchForModal(prefixGroups[0].prefix);
+      }
+    };
+    
+    const closeBatchSelector = () => {
+      document.getElementById('selector-modal').classList.add('hidden');
+    };
+    
+    const renderModalBatches = () => {
+      const container = document.getElementById('modal-batches-list');
+      container.innerHTML = '';
+      
+      prefixGroups.forEach(g => {
+        const isActive = currentBatchPrefix === g.prefix;
+        const count = modalActiveType === 'start' ? g.starts.length : g.ends.length;
+        
+        const item = document.createElement('div');
+        item.className = isActive 
+          ? 'p-2.5 rounded-lg cursor-pointer flex items-center justify-between transition bg-orange-600 text-white font-bold shadow-md shadow-orange-950/20'
+          : 'p-2.5 rounded-lg cursor-pointer flex items-center justify-between transition bg-[#1b1b20] border border-[#232328] hover:bg-[#23232a] text-gray-300';
+          
+        item.onclick = () => selectBatchForModal(g.prefix);
+        
+        item.innerHTML = `
+          <div class="flex flex-col">
+            <span class="text-xs font-mono">Lote: ${g.prefix}</span>
+          </div>
+          <span class="text-xs bg-black/40 px-2 py-0.5 rounded-full font-bold">${count} f</span>
+        `;
+        container.appendChild(item);
+      });
+    };
+    
+    const selectBatchForModal = (prefix) => {
+      currentBatchPrefix = prefix;
+      renderModalBatches();
+      
+      const g = prefixGroups.find(group => group.prefix === prefix);
+      document.getElementById('selected-batch-info').textContent = `Lote ${prefix} (${g.starts.length} inicio / ${g.ends.length} fin)`;
+      
+      const grid = document.getElementById('modal-images-grid');
+      grid.innerHTML = '';
+      
+      const files = modalActiveType === 'start' ? g.starts : g.ends;
+      const folder = modalActiveType === 'start' ? 'raw_inicio' : 'raw_fin';
+      const activeSelection = modalActiveType === 'start' ? selectedStartFile : selectedEndFile;
+      
+      files.forEach(f => {
+        const isSelected = activeSelection === f.name;
+        
+        const card = document.createElement('div');
+        card.className = isSelected 
+          ? 'border rounded-xl bg-black overflow-hidden relative cursor-pointer group flex flex-col items-center justify-center p-1 h-[200px] border-orange-500 ring-2 ring-orange-500/50'
+          : 'border rounded-xl bg-black overflow-hidden relative cursor-pointer group flex flex-col items-center justify-center p-1 h-[200px] border-[#2d2d35] hover:border-gray-500';
+          
+        card.onclick = () => selectImageFromFileGrid(f.name);
+        
+        card.innerHTML = `
+          <img src="/${folder}/${f.name}" class="w-full h-full object-contain">
+          ${isSelected ? `
+            <div class="absolute inset-0 bg-orange-600/25 flex items-center justify-center">
+              <span class="bg-orange-600 text-white font-bold p-2 rounded-full text-xs shadow-lg"><i class="fa-solid fa-circle-check"></i> Seleccionado</span>
+            </div>
+          ` : `
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-100">
+              <span class="bg-gray-800 text-white font-bold px-3 py-1.5 rounded-lg text-xs"><i class="fa-solid fa-check"></i> Seleccionar</span>
+            </div>
+          `}
+          <div class="absolute bottom-1 right-1 bg-black/80 px-1 py-0.5 rounded text-[8px] font-mono text-gray-500">
+            ${f.name.split('_').pop()}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    };
+    
+    const getPrefix = (filename) => filename.split('_').pop().slice(0, 4);
+    
+    const selectImageFromFileGrid = (filename) => {
+      if (modalActiveType === 'start') {
+        selectedStartFile = filename;
+        renderSpot('start', filename);
+      } else {
+        selectedEndFile = filename;
+        renderSpot('end', filename);
+      }
+      updateSaveButton();
+      closeBatchSelector();
+    };
+    
+    const saveCurrentMatch = () => {
+      if (selectedExerciseId && selectedStartFile && selectedEndFile) {
+        mapping[selectedExerciseId] = {
+          start: selectedStartFile,
+          end: selectedEndFile
+        };
+        
+        // Save to localStorage
+        localStorage.setItem('coach_visual_mapping', JSON.stringify(mapping));
+        
+        renderExercisesList();
+        updateProgress();
+        
+        // Auto select next unmatched exercise
+        const currentIdx = exercises.findIndex(e => e.id === selectedExerciseId);
+        let nextIdx = (currentIdx + 1) % exercises.length;
+        
+        // Find next unmatched exercise
+        let foundNext = false;
+        for (let i = 0; i < exercises.length; i++) {
+          const testIdx = (currentIdx + 1 + i) % exercises.length;
+          if (!mapping[exercises[testIdx].id]) {
+            selectExercise(exercises[testIdx].id);
+            foundNext = true;
+            break;
+          }
+        }
+        
+        if (!foundNext) {
+          alert("¡Enhorabuena! Has terminado de emparejar todos los ejercicios del catálogo. Ahora puedes Exportar el Mapeo.");
+        }
+      }
+    };
+    
+    const updateProgress = () => {
+      const total = exercises.length;
+      const done = Object.keys(mapping).length;
+      document.getElementById('progress-text').textContent = `${done} / ${total}`;
+    };
+    
+    const exportMapping = () => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(mapping, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href",     dataStr);
+      downloadAnchor.setAttribute("download", "mapping.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    };
+  </script>
+</body>
+</html>

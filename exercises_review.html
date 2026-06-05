@@ -1,0 +1,3310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificación Visual Premium de Ejercicios Coach</title>
+  <style>
+    body {
+      background-color: #0b0b0c;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #202024;
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+      color: #ffffff;
+      font-weight: 800;
+    }
+    p.subtitle {
+      color: #8e8e93;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: #151518;
+      border: 1px solid #202024;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #ff4500;
+    }
+    .image-container {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      background-color: #000000;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .image-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .image-container img.end-frame {
+      opacity: 0;
+    }
+    .image-container.animating img.end-frame {
+      animation: toggleOpacity 2.4s infinite steps(1, end);
+    }
+    @keyframes toggleOpacity {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    .info {
+      width: 100%;
+      text-align: left;
+    }
+    .title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .muscle {
+      font-size: 0.85rem;
+      color: #ff4500;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .filenames {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #8e8e93;
+      background-color: #0b0b0c;
+      padding: 6px;
+      border-radius: 4px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Verificación de Ejercicios Coach</h1>
+    <p class="subtitle">Animación en tiempo real (pseudo-GIF) para validar la alineación visual perfecta de los 199 ejercicios</p>
+  </header>
+  
+  <div class="grid">
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_banca_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_banca_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press de banca con barra</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_banca_barra<br>
+          Start: magnific_anatomical-3d-model-illus_Xt6oxTyBfo.png<br>
+          End: magnific_anatomical-3d-model-illus_Xt6oj7uBfo.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_banca_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_banca_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press de banca con mancuernas</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_banca_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_xg8LGFUjfW.png<br>
+          End: magnific_anatomical-3d-model-illus_xg8LnkdjfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press en máquina</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_WMU0EekcXe.png<br>
+          End: magnific_anatomical-3d-model-illus_WMU0E4dcXe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/flexiones_tradicionales_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/flexiones_tradicionales_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Flexiones tradicionales</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: flexiones_tradicionales<br>
+          Start: magnific_anatomical-3d-model-illus_vuzfSuka47.png<br>
+          End: magnific_anatomical-3d-model-illus_vuzf7z0a47.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/aperturas_pec_deck_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/aperturas_pec_deck_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Aperturas en máquina pec deck</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: aperturas_pec_deck<br>
+          Start: magnific_anatomical-3d-model-illus_VdODqW5MMU.png<br>
+          End: magnific_anatomical-3d-model-illus_VdODkIgMMU.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_inclinado_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_inclinado_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press inclinado con barra</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_inclinado_barra<br>
+          Start: magnific_anatomical-3d-model-illus_Uyf7WF7wny.png<br>
+          End: magnific_anatomical-3d-model-illus_Uyf7Tzowny.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_inclinado_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_inclinado_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press inclinado con mancuernas</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_inclinado_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_swmgGSPl8e.png<br>
+          End: magnific_anatomical-3d-model-illus_swmgYGLl8e.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_inclinado_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_inclinado_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press inclinado en máquina</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_inclinado_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_rlojReYxtc.png<br>
+          End: magnific_anatomical-3d-model-illus_rlojZbvxtc.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/aperturas_inclinadas_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/aperturas_inclinadas_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Aperturas inclinadas con mancuernas</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: aperturas_inclinadas_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_po4dqTIehw.png<br>
+          End: magnific_anatomical-3d-model-illus_po4drLUehw.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/cruce_poleas_abajo_arriba_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/cruce_poleas_abajo_arriba_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Cruce de poleas de abajo hacia arriba</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: cruce_poleas_abajo_arriba<br>
+          Start: magnific_anatomical-3d-model-illus_po4dKKlehw.png<br>
+          End: magnific_anatomical-3d-model-illus_po4d5Dtehw.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/fondos_paralelas_torso_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/fondos_paralelas_torso_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Fondos en paralelas inclinando el torso</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: fondos_paralelas_torso<br>
+          Start: magnific_anatomical-3d-model-illus_oh3ILaI829.png<br>
+          End: magnific_anatomical-3d-model-illus_oh3IlbC829.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_declinado_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_declinado_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press declinado con barra</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_declinado_barra<br>
+          Start: magnific_anatomical-3d-model-illus_NZ5idJp6D9.png<br>
+          End: magnific_anatomical-3d-model-illus_NZ5io0Q6D9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_declinado_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_declinado_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press declinado con mancuernas</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: press_declinado_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_mCAvSIahJQ.png<br>
+          End: magnific_anatomical-3d-model-illus_mCAvwlUhJQ.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/cruce_poleas_arriba_abajo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/cruce_poleas_arriba_abajo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Cruce de poleas de arriba hacia abajo</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: cruce_poleas_arriba_abajo<br>
+          Start: magnific_anatomical-3d-model-illus_mCAvljwhJQ.png<br>
+          End: magnific_anatomical-3d-model-illus_mCAvlVBhJQ.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/flexiones_inclinadas_banco_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/flexiones_inclinadas_banco_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Flexiones inclinadas en banco</div>
+        <div class="muscle">Pecho</div>
+        <div class="filenames">
+          ID: flexiones_inclinadas_banco<br>
+          Start: magnific_anatomical-3d-model-illus_LUtlGluswO.png<br>
+          End: magnific_anatomical-3d-model-illus_LUtlcd6swO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/jalon_pecho_amplio_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/jalon_pecho_amplio_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Jalón al pecho agarre amplio</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: jalon_pecho_amplio<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSzJEgv9.png<br>
+          End: magnific_anatomical-3d-model-illus_l7hS0bNgv9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/jalon_pecho_neutro_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/jalon_pecho_neutro_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Jalón al pecho agarre neutro</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: jalon_pecho_neutro<br>
+          Start: magnific_anatomical-3d-model-illus_kLXr6kQ16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXrAjE16B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/dominadas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/dominadas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Dominadas</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: dominadas<br>
+          Start: magnific_anatomical-3d-model-illus_Kjd1R64kqp.png<br>
+          End: magnific_anatomical-3d-model-illus_Kjd1iavkqp.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/dominadas_asistidas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/dominadas_asistidas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Dominadas asistidas</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: dominadas_asistidas<br>
+          Start: magnific_anatomical-3d-model-illus_iAkR8fQ3uK.png<br>
+          End: magnific_anatomical-3d-model-illus_iAkRmWc3uK.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/pullover_polea_alta_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/pullover_polea_alta_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Pull-over en polea alta</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: pullover_polea_alta<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUWOTSXO.png<br>
+          End: magnific_anatomical-3d-model-illus_gJvUVWmSXO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/remo_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/remo_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Remo con barra</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: remo_barra<br>
+          Start: magnific_anatomical-3d-model-illus_dINBKPLXSL.png<br>
+          End: magnific_anatomical-3d-model-illus_dINBkGyXSL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/remo_sentado_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/remo_sentado_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Remo sentado en polea</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: remo_sentado_polea<br>
+          Start: magnific_anatomical-3d-model-illus_CHWuw5wEEy.png<br>
+          End: magnific_anatomical-3d-model-illus_CHWuJaKEEy.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/remo_mancuerna_unilateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/remo_mancuerna_unilateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Remo con mancuerna unilateral</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: remo_mancuerna_unilateral<br>
+          Start: magnific_anatomical-3d-model-illus_aQnCSNWfSh.png<br>
+          End: magnific_anatomical-3d-model-illus_aQnCU8QfSh.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/remo_t_bar_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/remo_t_bar_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Remo T-bar</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: remo_t_bar<br>
+          Start: magnific_anatomical-3d-model-illus_43qNe5w9Aa.png<br>
+          End: magnific_anatomical-3d-model-illus_43qNdJ29Aa.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/remo_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/remo_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Remo en máquina</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: remo_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtjncIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_8vRts1rIrU.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_convencional_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_convencional_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto convencional</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: peso_muerto_convencional<br>
+          Start: magnific_anatomical-3d-model-illus_1sBx3e5r4r.png<br>
+          End: magnific_anatomical-3d-model-illus_1sBxG3pr4r.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_rumano_espalda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_rumano_espalda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto rumano</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: peso_muerto_rumano_espalda<br>
+          Start: magnific_anatomical-3d-model-illus_kLXr6aM16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXr3mW16B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/hiperextensiones_banco_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/hiperextensiones_banco_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Hiperextensiones en banco</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: hiperextensiones_banco<br>
+          Start: magnific_anatomical-3d-model-illus_wPCJWkb7EI.png<br>
+          End: magnific_anatomical-3d-model-illus_wPCJMhd7EI.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/buenos_dias_barra_espalda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/buenos_dias_barra_espalda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Buenos días con barra</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: buenos_dias_barra_espalda<br>
+          Start: magnific_anatomical-3d-model-illus_LUtl2HbswO.png<br>
+          End: magnific_anatomical-3d-model-illus_LUtln7HswO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/superman_suelo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/superman_suelo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Superman en suelo</div>
+        <div class="muscle">Espalda</div>
+        <div class="filenames">
+          ID: superman_suelo<br>
+          Start: magnific_anatomical-3d-model-illus_mCAvLpmhJQ.png<br>
+          End: magnific_anatomical-3d-model-illus_mCAvg79hJQ.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_militar_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_militar_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press militar con barra</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: press_militar_barra<br>
+          Start: magnific_anatomical-3d-model-illus_PiH9Mgj42C.png<br>
+          End: magnific_anatomical-3d-model-illus_PiH9dyl42C.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_militar_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_militar_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press militar con mancuernas</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: press_militar_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_J9uy0ssOq4.png<br>
+          End: magnific_anatomical-3d-model-illus_J9uypLkOq4.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_arnold_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_arnold_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press Arnold</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: press_arnold<br>
+          Start: magnific_anatomical-3d-model-illus_Xt6oKV6Bfo.png<br>
+          End: magnific_anatomical-3d-model-illus_Xt6oLx8Bfo.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_maquina_hombro_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_maquina_hombro_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press en máquina de hombro</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: press_maquina_hombro<br>
+          Start: magnific_anatomical-3d-model-illus_74EOcg7JAL.png<br>
+          End: magnific_anatomical-3d-model-illus_74EOpk5JAL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_frontal_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_frontal_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación frontal con mancuernas</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: elevacion_frontal_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_LUtl2rjswO.png<br>
+          End: magnific_anatomical-3d-model-illus_LUtln7UswO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevaciones_laterales_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevaciones_laterales_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevaciones laterales con mancuernas</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: elevaciones_laterales_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_dINB5enXSL.png<br>
+          End: magnific_anatomical-3d-model-illus_dINBx09XSL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevaciones_laterales_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevaciones_laterales_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevaciones laterales en polea</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: elevaciones_laterales_polea<br>
+          Start: magnific_anatomical-3d-model-illus_YVScfTlWeC.png<br>
+          End: magnific_anatomical-3d-model-illus_YVScC3FWeC.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevaciones_laterales_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevaciones_laterales_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevaciones laterales en máquina</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: elevaciones_laterales_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_MXypHXVDCm.png<br>
+          End: magnific_anatomical-3d-model-illus_MXypKZODCm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_lateral_unilateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_lateral_unilateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación lateral unilateral</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: elevacion_lateral_unilateral<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSzPFgv9.png<br>
+          End: magnific_anatomical-3d-model-illus_l7hSYDkgv9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/remo_menton_agarre_amplio_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/remo_menton_agarre_amplio_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Remo al mentón con agarre amplio</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: remo_menton_agarre_amplio<br>
+          Start: magnific_anatomical-3d-model-illus_MXypHmXDCm.png<br>
+          End: magnific_anatomical-3d-model-illus_MXypk2ODCm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/pajaros_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/pajaros_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Pájaros con mancuernas</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: pajaros_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_jSIs2PiLD0.png<br>
+          End: magnific_anatomical-3d-model-illus_jSIsYCCLD0.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/reverse_pec_deck_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/reverse_pec_deck_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Reverse pec deck</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: reverse_pec_deck<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUn38SXO.png<br>
+          End: magnific_anatomical-3d-model-illus_gJvUYuQSXO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/face_pull_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/face_pull_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Face pull</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: face_pull<br>
+          Start: magnific_anatomical-3d-model-illus_1sBx3OVr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_1sBxAMhr4r.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_posterior_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_posterior_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación posterior en polea</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: elevacion_posterior_polea<br>
+          Start: magnific_anatomical-3d-model-illus_DBPeqCcpcl.png<br>
+          End: magnific_anatomical-3d-model-illus_DBPeb9bpcl.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/band_pull_aparts_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/band_pull_aparts_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Band pull-aparts</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: band_pull_aparts<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSzR1gv9.png<br>
+          End: magnific_anatomical-3d-model-illus_l7hSWVbgv9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/rotacion_externa_banda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/rotacion_externa_banda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Rotación externa con banda</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: rotacion_externa_banda<br>
+          Start: magnific_anatomical-3d-model-illus_xg8LZ6xjfW.png<br>
+          End: magnific_anatomical-3d-model-illus_xg8LnAdjfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/rotacion_externa_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/rotacion_externa_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Rotación externa en polea</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: rotacion_externa_polea<br>
+          Start: magnific_anatomical-3d-model-illus_0p7VuC6TfW.png<br>
+          End: magnific_anatomical-3d-model-illus_0p7VbBLTfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/rotacion_interna_banda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/rotacion_interna_banda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Rotación interna con banda</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: rotacion_interna_banda<br>
+          Start: magnific_anatomical-3d-model-illus_1sBx33pr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_1sBxRtjr4r.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/scapular_push_ups_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/scapular_push_ups_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Scapular push-ups</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: scapular_push_ups<br>
+          Start: magnific_anatomical-3d-model-illus_TeJMQFvVNR.png<br>
+          End: magnific_anatomical-3d-model-illus_TeJMq2yVNR.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/wall_slides_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/wall_slides_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Wall slides</div>
+        <div class="muscle">Hombros</div>
+        <div class="filenames">
+          ID: wall_slides<br>
+          Start: magnific_anatomical-3d-model-illus_9Rb6eXLNYZ.png<br>
+          End: magnific_anatomical-3d-model-illus_9Rb68OVNYZ.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_barra_recta_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_barra_recta_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl con barra recta</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_barra_recta<br>
+          Start: magnific_anatomical-3d-model-illus_9Rb6eBsNYZ.png<br>
+          End: magnific_anatomical-3d-model-illus_brpKivi5Y2.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_barra_z_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_barra_z_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl con barra Z</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_barra_z<br>
+          Start: magnific_anatomical-3d-model-illus_kLXriAw16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXr3E816B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl con mancuernas</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_brpK9ZK5Y2.png<br>
+          End: magnific_anatomical-3d-model-illus_brpKRVL5Y2.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_alterno_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_alterno_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl alterno</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_alterno<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUnVHSXO.png<br>
+          End: magnific_anatomical-3d-model-illus_gJvUc28SXO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_inclinado_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_inclinado_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl inclinado con mancuernas</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_inclinado_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_5xekNGyKxe.png<br>
+          End: magnific_anatomical-3d-model-illus_5xekZ1tKxe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_predicador_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_predicador_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl predicador</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_predicador<br>
+          Start: magnific_anatomical-3d-model-illus_0p7VukYTfW.png<br>
+          End: magnific_anatomical-3d-model-illus_0p7VbKZTfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_polea_baja_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_polea_baja_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl en polea baja</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_polea_baja<br>
+          Start: magnific_anatomical-3d-model-illus_WMU0CKRcXe.png<br>
+          End: magnific_anatomical-3d-model-illus_WMU0Q8xcXe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_concentrado_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_concentrado_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl concentrado</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_concentrado<br>
+          Start: magnific_anatomical-3d-model-illus_oh3IrO7829.png<br>
+          End: magnific_anatomical-3d-model-illus_oh3IlRP829.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_martillo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_martillo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl martillo</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_martillo<br>
+          Start: magnific_anatomical-3d-model-illus_ONQPVhYynm.png<br>
+          End: magnific_anatomical-3d-model-illus_ONQPeqMynm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_inverso_barra_z_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_inverso_barra_z_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl inverso con barra Z</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_inverso_barra_z<br>
+          Start: magnific_anatomical-3d-model-illus_nTgWaroYQD.png<br>
+          End: magnific_anatomical-3d-model-illus_nTgWFcLYQD.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_zottman_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_zottman_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl Zottman</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: curl_zottman<br>
+          Start: magnific_anatomical-3d-model-illus_iAkRBH13uK.png<br>
+          End: magnific_anatomical-3d-model-illus_iAkRmMD3uK.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/chin_ups_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/chin_ups_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Chin-ups / dominada supina</div>
+        <div class="muscle">Bíceps</div>
+        <div class="filenames">
+          ID: chin_ups<br>
+          Start: magnific_anatomical-3d-model-illus_62K3X5WiJO.png<br>
+          End: magnific_anatomical-3d-model-illus_62K3mvOiJO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/pushdown_polea_cuerda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/pushdown_polea_cuerda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Pushdown en polea con cuerda</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: pushdown_polea_cuerda<br>
+          Start: magnific_anatomical-3d-model-illus_Xt6ok6jBfo.png<br>
+          End: magnific_anatomical-3d-model-illus_Xt6oLLtBfo.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/pushdown_barra_recta_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/pushdown_barra_recta_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Pushdown con barra recta</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: pushdown_barra_recta<br>
+          Start: magnific_anatomical-3d-model-illus_hEGalzjvqL.png<br>
+          End: magnific_anatomical-3d-model-illus_hEGa7UovqL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/extension_cabeza_mancuerna_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/extension_cabeza_mancuerna_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Extensión por encima de la cabeza con mancuerna</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: extension_cabeza_mancuerna<br>
+          Start: magnific_anatomical-3d-model-illus_74EO0uHJAL.png<br>
+          End: magnific_anatomical-3d-model-illus_rlojZ8Txtc.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/extension_overhead_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/extension_overhead_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Extensión overhead en polea</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: extension_overhead_polea<br>
+          Start: magnific_anatomical-3d-model-illus_NZ5id1A6D9.png<br>
+          End: magnific_anatomical-3d-model-illus_NZ5i8E76D9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/skull_crushers_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/skull_crushers_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Skull crushers</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: skull_crushers<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUnEJSXO.png<br>
+          End: magnific_anatomical-3d-model-illus_gJvU07USXO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/press_cerrado_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/press_cerrado_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Press cerrado con barra</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: press_cerrado_barra<br>
+          Start: magnific_anatomical-3d-model-illus_1sBx3m1r4r.png<br>
+          End: magnific_anatomical-3d-model-illus_1sBx23Vr4r.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/fondos_paralelas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/fondos_paralelas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Fondos en paralelas</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: fondos_paralelas<br>
+          Start: magnific_anatomical-3d-model-illus_oh3IrzA829.png<br>
+          End: magnific_anatomical-3d-model-illus_oh3IlMn829.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/fondos_banco_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/fondos_banco_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Fondos en banco</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: fondos_banco<br>
+          Start: magnific_anatomical-3d-model-illus_1sBx3aSr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_1sBx2uLr4r.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/flexiones_diamante_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/flexiones_diamante_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Flexiones diamante</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: flexiones_diamante<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUnq9SXO.png<br>
+          End: magnific_anatomical-3d-model-illus_gJvUTpVSXO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/patada_triceps_mancuerna_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/patada_triceps_mancuerna_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Patada de tríceps con mancuerna</div>
+        <div class="muscle">Tríceps</div>
+        <div class="filenames">
+          ID: patada_triceps_mancuerna<br>
+          Start: magnific_anatomical-3d-model-illus_jSIs2ubLD0.png<br>
+          End: magnific_anatomical-3d-model-illus_jSIszqCLD0.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_muneca_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_muneca_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl de muñeca con barra</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: curl_muneca_barra<br>
+          Start: magnific_anatomical-3d-model-illus_xg8LZQpjfW.png<br>
+          End: magnific_anatomical-3d-model-illus_xg8LGKyjfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_inverso_muneca_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_inverso_muneca_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl inverso de muñeca</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: curl_inverso_muneca<br>
+          Start: magnific_anatomical-3d-model-illus_DBPeqzgpcl.png<br>
+          End: magnific_anatomical-3d-model-illus_DBPe5LIpcl.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_inverso_barra_z_antebrazo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_inverso_barra_z_antebrazo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl inverso con barra Z</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: curl_inverso_barra_z_antebrazo<br>
+          Start: magnific_anatomical-3d-model-illus_Bmi81VroQR.png<br>
+          End: magnific_anatomical-3d-model-illus_Bmi8jXLoQR.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/farmer_walk_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/farmer_walk_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Farmer walk</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: farmer_walk<br>
+          Start: magnific_anatomical-3d-model-illus_NZ5idOe6D9.png<br>
+          End: magnific_anatomical-3d-model-illus_NZ5i8b96D9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/dead_hang_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/dead_hang_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Dead hang</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: dead_hang<br>
+          Start: magnific_anatomical-3d-model-illus_3G1Zo90REY.png<br>
+          End: magnific_anatomical-3d-model-illus_3G1ZvmFREY.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/plate_pinch_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/plate_pinch_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Plate pinch</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: plate_pinch<br>
+          Start: magnific_anatomical-3d-model-illus_IaZmjBctvE.png<br>
+          End: magnific_anatomical-3d-model-illus_IaZmswKtvE.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/wrist_roller_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/wrist_roller_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Wrist roller</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: wrist_roller<br>
+          Start: magnific_anatomical-3d-model-illus_1sBx3kPr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_1sBxAuSr4r.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_martillo_antebrazo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_martillo_antebrazo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl martillo</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: curl_martillo_antebrazo<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUngUSXO.png<br>
+          End: magnific_anatomical-3d-model-illus_gJvUVywSXO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/zottman_curl_antebrazo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/zottman_curl_antebrazo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Zottman curl</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: zottman_curl_antebrazo<br>
+          Start: magnific_anatomical-3d-model-illus_iAkRoRz3uK.png<br>
+          End: magnific_anatomical-3d-model-illus_brpKNXy5Y2.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/hold_peso_muerto_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/hold_peso_muerto_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Hold de peso muerto</div>
+        <div class="muscle">Antebrazos</div>
+        <div class="filenames">
+          ID: hold_peso_muerto<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtjhfIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_8vRtgavIrU.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/crunch_suelo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/crunch_suelo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Crunch en suelo</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: crunch_suelo<br>
+          Start: magnific_anatomical-3d-model-illus_PiH9piy42C.png<br>
+          End: magnific_anatomical-3d-model-illus_PiH9Xmp42C.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/crunch_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/crunch_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Crunch en máquina</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: crunch_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_mCAvluKhJQ.png<br>
+          End: magnific_anatomical-3d-model-illus_mCAvUi2hJQ.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/crunch_polea_alta_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/crunch_polea_alta_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Crunch en polea alta</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: crunch_polea_alta<br>
+          Start: magnific_anatomical-3d-model-illus_Xt6o1a0Bfo.png<br>
+          End: magnific_anatomical-3d-model-illus_Xt6osQ0Bfo.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/reverse_crunch_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/reverse_crunch_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Reverse crunch</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: reverse_crunch<br>
+          Start: magnific_anatomical-3d-model-illus_jSIsAyNLD0.png<br>
+          End: magnific_anatomical-3d-model-illus_jSIsnSULD0.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_piernas_acostado_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_piernas_acostado_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación de piernas acostado</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: elevacion_piernas_acostado<br>
+          Start: magnific_anatomical-3d-model-illus_43qNenB9Aa.png<br>
+          End: magnific_anatomical-3d-model-illus_43qNXnd9Aa.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_rodillas_colgado_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_rodillas_colgado_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación de rodillas colgado</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: elevacion_rodillas_colgado<br>
+          Start: magnific_anatomical-3d-model-illus_EqcQJjAuuO.png<br>
+          End: magnific_anatomical-3d-model-illus_EqcQOE7uuO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/russian_twist_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/russian_twist_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Russian twist</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: russian_twist<br>
+          Start: magnific_anatomical-3d-model-illus_1sBxRyYr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_1sBxGaKr4r.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/woodchopper_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/woodchopper_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Woodchopper en polea</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: woodchopper_polea<br>
+          Start: magnific_anatomical-3d-model-illus_J9uyVnGOq4.png<br>
+          End: magnific_anatomical-3d-model-illus_J9uyehBOq4.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/side_plank_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/side_plank_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Side plank</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: side_plank<br>
+          Start: magnific_anatomical-3d-model-illus_5xek6yrKxe.png<br>
+          End: magnific_anatomical-3d-model-illus_5xek6eAKxe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/bicicleta_abdominal_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/bicicleta_abdominal_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Bicicleta abdominal</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: bicicleta_abdominal<br>
+          Start: magnific_anatomical-3d-model-illus_TeJMFC8VNR.png<br>
+          End: magnific_anatomical-3d-model-illus_TeJMqY6VNR.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/pallof_press_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/pallof_press_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Pallof press</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: pallof_press<br>
+          Start: magnific_anatomical-3d-model-illus_PiH9pMY42C.png<br>
+          End: magnific_anatomical-3d-model-illus_PiH9BnN42C.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/plancha_frontal_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/plancha_frontal_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Plancha frontal</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: plancha_frontal<br>
+          Start: magnific_anatomical-3d-model-illus_oh3IxrK829.png<br>
+          End: magnific_anatomical-3d-model-illus_brpKNQn5Y2.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/plancha_toque_hombro_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/plancha_toque_hombro_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Plancha con toque de hombro</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: plancha_toque_hombro<br>
+          Start: magnific_anatomical-3d-model-illus_NZ5iXXx6D9.png<br>
+          End: magnific_anatomical-3d-model-illus_NZ5iIr36D9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/dead_bug_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/dead_bug_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Dead bug</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: dead_bug<br>
+          Start: magnific_anatomical-3d-model-illus_Bmi8rxWoQR.png<br>
+          End: magnific_anatomical-3d-model-illus_Bmi8svwoQR.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/bird_dog_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/bird_dog_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Bird dog</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: bird_dog<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSncSgv9.png<br>
+          End: magnific_anatomical-3d-model-illus_l7hScDwgv9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/hollow_hold_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/hollow_hold_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Hollow hold</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: hollow_hold<br>
+          Start: magnific_anatomical-3d-model-illus_xg8L2nwjfW.png<br>
+          End: magnific_anatomical-3d-model-illus_xg8LzXFjfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/ab_wheel_rollout_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/ab_wheel_rollout_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Ab wheel rollout</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: ab_wheel_rollout<br>
+          Start: magnific_anatomical-3d-model-illus_CHWu74nEEy.png<br>
+          End: magnific_anatomical-3d-model-illus_CHWuOy2EEy.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/mountain_climbers_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/mountain_climbers_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Mountain climbers</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: mountain_climbers<br>
+          Start: magnific_anatomical-3d-model-illus_Kjd1iGAkqp.png<br>
+          End: magnific_anatomical-3d-model-illus_Kjd1RrKkqp.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/bear_crawl_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/bear_crawl_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Bear crawl</div>
+        <div class="muscle">Abdomen/Core</div>
+        <div class="filenames">
+          ID: bear_crawl<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtjwOIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_8vRtSHQIrU.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/hip_thrust_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/hip_thrust_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Hip thrust con barra</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: hip_thrust_barra<br>
+          Start: magnific_anatomical-3d-model-illus_po4d5syehw.png<br>
+          End: magnific_anatomical-3d-model-illus_po4drYVehw.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/hip_thrust_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/hip_thrust_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Hip thrust en máquina</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: hip_thrust_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_mCAvlPRhJQ.png<br>
+          End: magnific_anatomical-3d-model-illus_mCAvwQqhJQ.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/puente_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/puente_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Puente de glúteos</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: puente_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_62K3BERiJO.png<br>
+          End: magnific_anatomical-3d-model-illus_62K3tf4iJO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_rumano_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_rumano_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto rumano</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: peso_muerto_rumano_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_LUtlGeZswO.png<br>
+          End: magnific_anatomical-3d-model-illus_LUtlnKbswO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_sumo_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_sumo_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto sumo</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: peso_muerto_sumo_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSnXLgv9.png<br>
+          End: magnific_anatomical-3d-model-illus_l7hScQngv9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/sentadilla_profunda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/sentadilla_profunda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Sentadilla profunda</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: sentadilla_profunda<br>
+          Start: magnific_anatomical-3d-model-illus_Bmi8rP8oQR.png<br>
+          End: magnific_anatomical-3d-model-illus_Bmi8sq6oQR.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/prensa_pies_altos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/prensa_pies_altos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Prensa con pies altos</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: prensa_pies_altos<br>
+          Start: magnific_anatomical-3d-model-illus_5xek6V3Kxe.png<br>
+          End: magnific_anatomical-3d-model-illus_5xekRoGKxe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/patada_gluteo_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/patada_gluteo_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Patada de glúteo en máquina</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: patada_gluteo_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_e89XKy1dqL.png<br>
+          End: magnific_anatomical-3d-model-illus_e89Xr8GdqL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/abduccion_maquina_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/abduccion_maquina_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Abducción en máquina</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: abduccion_maquina_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_9Rb6dqiNYZ.png<br>
+          End: magnific_anatomical-3d-model-illus_rloj2M2xtc.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/abduccion_polea_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/abduccion_polea_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Abducción en polea</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: abduccion_polea_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_TeJMFJLVNR.png<br>
+          End: magnific_anatomical-3d-model-illus_TeJM5KvVNR.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/caminata_lateral_banda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/caminata_lateral_banda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Caminata lateral con banda</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: caminata_lateral_banda<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtjZGIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_8vRtSx1IrU.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/monster_walks_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/monster_walks_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Monster walks</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: monster_walks_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_nTgWfwfYQD.png<br>
+          End: magnific_anatomical-3d-model-illus_hEGaSmivqL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/clamshell_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/clamshell_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Clamshell</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: clamshell_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_DBPeb6Kpcl.png<br>
+          End: magnific_anatomical-3d-model-illus_DBPe1a2pcl.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/bulgarian_split_squat_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/bulgarian_split_squat_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Bulgarian split squat</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: bulgarian_split_squat_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_EqcQJp5uuO.png<br>
+          End: magnific_anatomical-3d-model-illus_EqcQysAuuO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/step_up_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/step_up_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Step-up</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: step_up_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_Xt6o12gBfo.png<br>
+          End: magnific_anatomical-3d-model-illus_brpKiK05Y2.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/zancada_caminando_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/zancada_caminando_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Zancada caminando</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: zancada_caminando_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_TeJMF67VNR.png<br>
+          End: magnific_anatomical-3d-model-illus_TeJMKoYVNR.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/zancada_inversa_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/zancada_inversa_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Zancada inversa</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: zancada_inversa_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSnHTgv9.png<br>
+          End: magnific_anatomical-3d-model-illus_l7hS0tNgv9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/single_leg_rdl_gluteos_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/single_leg_rdl_gluteos_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Single-leg Romanian deadlift</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: single_leg_rdl_gluteos<br>
+          Start: magnific_anatomical-3d-model-illus_dINBkn4XSL.png<br>
+          End: magnific_anatomical-3d-model-illus_dINBjSQXSL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/pull_through_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/pull_through_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Pull-through en polea</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: pull_through_polea<br>
+          Start: magnific_anatomical-3d-model-illus_cDwTu3Q0eP.png<br>
+          End: magnific_anatomical-3d-model-illus_cDwTqlM0eP.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/frog_pumps_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/frog_pumps_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Frog pumps</div>
+        <div class="muscle">Glúteos</div>
+        <div class="filenames">
+          ID: frog_pumps<br>
+          Start: magnific_anatomical-3d-model-illus_kLXr3ED16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXr2mz16B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/sentadilla_trasera_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/sentadilla_trasera_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Sentadilla trasera</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: sentadilla_trasera<br>
+          Start: magnific_anatomical-3d-model-illus_EqcQJILuuO.png<br>
+          End: magnific_anatomical-3d-model-illus_EqcQPtxuuO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/sentadilla_frontal_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/sentadilla_frontal_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Sentadilla frontal</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: sentadilla_frontal<br>
+          Start: magnific_anatomical-3d-model-illus_MXypqziDCm.png<br>
+          End: magnific_anatomical-3d-model-illus_MXyp52PDCm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/sentadilla_goblet_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/sentadilla_goblet_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Sentadilla goblet</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: sentadilla_goblet<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtjDdIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_aQnC75lfSh.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/sentadilla_smith_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/sentadilla_smith_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Sentadilla en Smith</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: sentadilla_smith<br>
+          Start: magnific_anatomical-3d-model-illus_kLXr3HX16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXr2ko16B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/hack_squat_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/hack_squat_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Hack squat</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: hack_squat<br>
+          Start: magnific_anatomical-3d-model-illus_SOawWsDUb8.png<br>
+          End: magnific_anatomical-3d-model-illus_SOawcXJUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/prensa_piernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/prensa_piernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Prensa de piernas</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: prensa_piernas<br>
+          Start: magnific_anatomical-3d-model-illus_Bmi8rpjoQR.png<br>
+          End: magnific_anatomical-3d-model-illus_aQnC7KgfSh.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/prensa_unilateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/prensa_unilateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Prensa unilateral</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: prensa_unilateral<br>
+          Start: magnific_anatomical-3d-model-illus_5xek6qIKxe.png<br>
+          End: magnific_anatomical-3d-model-illus_5xek2P5Kxe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/extension_cuadriceps_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/extension_cuadriceps_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Extensión de cuádriceps</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: extension_cuadriceps<br>
+          Start: magnific_anatomical-3d-model-illus_kLXr3KC16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXrAsh16B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/zancada_caminando_quads_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/zancada_caminando_quads_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Zancada caminando</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: zancada_caminando_quads<br>
+          Start: magnific_anatomical-3d-model-illus_IaZmsmVtvE.png<br>
+          End: magnific_anatomical-3d-model-illus_IaZmLVZtvE.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/zancada_inversa_quads_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/zancada_inversa_quads_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Zancada inversa</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: zancada_inversa_quads<br>
+          Start: magnific_anatomical-3d-model-illus_9Rb6XiINYZ.png<br>
+          End: magnific_anatomical-3d-model-illus_SOaw01YUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/bulgarian_split_squat_quads_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/bulgarian_split_squat_quads_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Bulgarian split squat</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: bulgarian_split_squat_quads<br>
+          Start: magnific_anatomical-3d-model-illus_YVScETLWeC.png<br>
+          End: magnific_anatomical-3d-model-illus_hEGaUtNvqL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/step_up_quads_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/step_up_quads_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Step-up</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: step_up_quads<br>
+          Start: magnific_anatomical-3d-model-illus_9Rb6XRmNYZ.png<br>
+          End: magnific_anatomical-3d-model-illus_ub0F4FnQLD.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/split_squat_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/split_squat_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Split squat</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: split_squat<br>
+          Start: magnific_anatomical-3d-model-illus_SOawcPaUb8.png<br>
+          End: magnific_anatomical-3d-model-illus_SOaw0OoUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/wall_sit_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/wall_sit_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Wall sit</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: wall_sit<br>
+          Start: magnific_anatomical-3d-model-illus_swmgny6l8e.png<br>
+          End: magnific_anatomical-3d-model-illus_swmgYKxl8e.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/spanish_squat_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/spanish_squat_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Spanish squat</div>
+        <div class="muscle">Cuádriceps</div>
+        <div class="filenames">
+          ID: spanish_squat<br>
+          Start: magnific_anatomical-3d-model-illus_hEGaSqcvqL.png<br>
+          End: magnific_anatomical-3d-model-illus_hEGagXPvqL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_rumano_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_rumano_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto rumano con barra</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: peso_muerto_rumano_barra<br>
+          Start: magnific_anatomical-3d-model-illus_VdODqtJMMU.png<br>
+          End: magnific_anatomical-3d-model-illus_WMU0FVQcXe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_rumano_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_rumano_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto rumano con mancuernas</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: peso_muerto_rumano_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_PiH9en342C.png<br>
+          End: magnific_anatomical-3d-model-illus_PiH9BFt42C.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_piernas_rigidas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_piernas_rigidas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto piernas rígidas</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: peso_muerto_piernas_rigidas<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtLq5IrU.png<br>
+          End: magnific_anatomical-3d-model-illus_MXypKxQDCm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_femoral_acostado_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_femoral_acostado_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl femoral acostado</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: curl_femoral_acostado<br>
+          Start: magnific_anatomical-3d-model-illus_ONQPDzgynm.png<br>
+          End: magnific_anatomical-3d-model-illus_ONQPeLIynm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_femoral_sentado_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_femoral_sentado_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl femoral sentado</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: curl_femoral_sentado<br>
+          Start: magnific_anatomical-3d-model-illus_swmgnRzl8e.png<br>
+          End: magnific_anatomical-3d-model-illus_swmgcdPl8e.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_femoral_de_pie_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_femoral_de_pie_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl femoral de pie</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: curl_femoral_de_pie<br>
+          Start: magnific_anatomical-3d-model-illus_swmgnZnl8e.png<br>
+          End: magnific_anatomical-3d-model-illus_swmgcbKl8e.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_femoral_unilateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_femoral_unilateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl femoral unilateral</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: curl_femoral_unilateral<br>
+          Start: magnific_anatomical-3d-model-illus_jSIsGRALD0.png<br>
+          End: magnific_anatomical-3d-model-illus_jSIsWpnLD0.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/nordic_curl_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/nordic_curl_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Nordic curl</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: nordic_curl<br>
+          Start: magnific_anatomical-3d-model-illus_VdODqFRMMU.png<br>
+          End: magnific_anatomical-3d-model-illus_LUtlYDNswO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/glute_ham_raise_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/glute_ham_raise_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Glute ham raise</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: glute_ham_raise<br>
+          Start: magnific_anatomical-3d-model-illus_Bmi8xkGoQR.png<br>
+          End: magnific_anatomical-3d-model-illus_SOawToJUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/buenos_dias_barra_femorales_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/buenos_dias_barra_femorales_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Buenos días con barra</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: buenos_dias_barra_femorales<br>
+          Start: magnific_anatomical-3d-model-illus_ub0FyyCQLD.png<br>
+          End: magnific_anatomical-3d-model-illus_ub0FyvZQLD.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/pull_through_polea_femorales_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/pull_through_polea_femorales_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Pull-through en polea</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: pull_through_polea_femorales<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtLlSIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_IaZmg9jtvE.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/kettlebell_swing_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/kettlebell_swing_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Kettlebell swing</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: kettlebell_swing<br>
+          Start: magnific_anatomical-3d-model-illus_jSIsGY0LD0.png<br>
+          End: magnific_anatomical-3d-model-illus_rlojGIcxtc.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/single_leg_rdl_femorales_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/single_leg_rdl_femorales_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Single-leg Romanian deadlift</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: single_leg_rdl_femorales<br>
+          Start: magnific_anatomical-3d-model-illus_Uyf70DEwny.png<br>
+          End: magnific_anatomical-3d-model-illus_Uyf7Vv1wny.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/sliding_leg_curl_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/sliding_leg_curl_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Sliding leg curl</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: sliding_leg_curl<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSYV5gv9.png<br>
+          End: magnific_anatomical-3d-model-illus_l7hS0Qygv9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/curl_femoral_fitball_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/curl_femoral_fitball_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Curl femoral con fitball</div>
+        <div class="muscle">Isquiotibiales</div>
+        <div class="filenames">
+          ID: curl_femoral_fitball<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSYMKgv9.png<br>
+          End: magnific_anatomical-3d-model-illus_ub0F4XOQLD.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/maquina_aductores_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/maquina_aductores_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Máquina de aductores</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: maquina_aductores<br>
+          Start: magnific_anatomical-3d-model-illus_kLXrRWi16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXrGwb16B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/aductor_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/aductor_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Aductor en polea</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: aductor_polea<br>
+          Start: magnific_anatomical-3d-model-illus_VdODqj0MMU.png<br>
+          End: magnific_anatomical-3d-model-illus_MXypKY6DCm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/copenhagen_plank_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/copenhagen_plank_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Copenhagen plank</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: copenhagen_plank<br>
+          Start: magnific_anatomical-3d-model-illus_brpK6Wj5Y2.png<br>
+          End: magnific_anatomical-3d-model-illus_brpKRrT5Y2.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/sentadilla_sumo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/sentadilla_sumo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Sentadilla sumo</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: sentadilla_sumo<br>
+          Start: magnific_anatomical-3d-model-illus_DBPe5Uapcl.png<br>
+          End: magnific_anatomical-3d-model-illus_DBPe1gIpcl.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/peso_muerto_sumo_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/peso_muerto_sumo_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Peso muerto sumo</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: peso_muerto_sumo<br>
+          Start: magnific_anatomical-3d-model-illus_1sBxZVur4r.png<br>
+          End: magnific_anatomical-3d-model-illus_LUtlYkbswO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/zancada_lateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/zancada_lateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Zancada lateral</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: zancada_lateral<br>
+          Start: magnific_anatomical-3d-model-illus_TeJMHn6VNR.png<br>
+          End: magnific_anatomical-3d-model-illus_aQnCJmQfSh.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/cossack_squat_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/cossack_squat_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Cossack squat</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: cossack_squat<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtLXoIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_SOawTgdUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/squeeze_pelota_rodillas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/squeeze_pelota_rodillas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Squeeze de pelota entre rodillas</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: squeeze_pelota_rodillas<br>
+          Start: magnific_anatomical-3d-model-illus_vuzfUvFa47.png<br>
+          End: magnific_anatomical-3d-model-illus_vuzfJKxa47.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/prensa_postura_amplia_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/prensa_postura_amplia_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Prensa con postura amplia</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: prensa_postura_amplia<br>
+          Start: magnific_anatomical-3d-model-illus_xg8LGLijfW.png<br>
+          End: magnific_anatomical-3d-model-illus_xg8Lzu0jfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/aductor_banda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/aductor_banda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Aductor con banda</div>
+        <div class="muscle">Aductores</div>
+        <div class="filenames">
+          ID: aductor_banda<br>
+          Start: magnific_anatomical-3d-model-illus_62K38REiJO.png<br>
+          End: magnific_anatomical-3d-model-illus_62K3mtwiJO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/maquina_abductores_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/maquina_abductores_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Máquina de abductores</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: maquina_abductores<br>
+          Start: magnific_anatomical-3d-model-illus_dINBrIWXSL.png<br>
+          End: magnific_anatomical-3d-model-illus_dINBLHdXSL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/abduccion_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/abduccion_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Abducción en polea</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: abduccion_polea<br>
+          Start: magnific_anatomical-3d-model-illus_y6F4e6TPW9.png<br>
+          End: magnific_anatomical-3d-model-illus_y6F4dJAPW9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/abduccion_banda_pie_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/abduccion_banda_pie_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Abducción con banda de pie</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: abduccion_banda_pie<br>
+          Start: magnific_anatomical-3d-model-illus_DBPeK8ipcl.png<br>
+          End: magnific_anatomical-3d-model-illus_LUtlWlxswO.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/abduccion_acostado_lateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/abduccion_acostado_lateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Abducción acostado lateral</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: abduccion_acostado_lateral<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUcPVSXO.png<br>
+          End: magnific_anatomical-3d-model-illus_IaZmSQdtvE.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/clamshell_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/clamshell_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Clamshell</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: clamshell<br>
+          Start: magnific_anatomical-3d-model-illus_NZ5ioza6D9.png<br>
+          End: magnific_anatomical-3d-model-illus_NZ5itid6D9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/caminata_lateral_banda_abductores_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/caminata_lateral_banda_abductores_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Caminata lateral con banda</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: caminata_lateral_banda_abductores<br>
+          Start: magnific_anatomical-3d-model-illus_iAkRIWT3uK.png<br>
+          End: magnific_anatomical-3d-model-illus_vuzfJ1La47.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/monster_walk_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/monster_walk_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Monster walk</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: monster_walk<br>
+          Start: magnific_anatomical-3d-model-illus_iAkRIcV3uK.png<br>
+          End: magnific_anatomical-3d-model-illus_WMU0HhLcXe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/fire_hydrants_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/fire_hydrants_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Fire hydrants</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: fire_hydrants<br>
+          Start: magnific_anatomical-3d-model-illus_jSIszPULD0.png<br>
+          End: magnific_anatomical-3d-model-illus_SOawVGqUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/side_plank_abduction_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/side_plank_abduction_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Side plank abduction</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: side_plank_abduction<br>
+          Start: magnific_anatomical-3d-model-illus_l7hSWNFgv9.png<br>
+          End: magnific_anatomical-3d-model-illus_hEGa7LpvqL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/step_up_lateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/step_up_lateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Step-up lateral</div>
+        <div class="muscle">Abductores</div>
+        <div class="filenames">
+          ID: step_up_lateral<br>
+          Start: magnific_anatomical-3d-model-illus_kLXrZOx16B.png<br>
+          End: magnific_anatomical-3d-model-illus_kLXrGA716B.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_talones_pie_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_talones_pie_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación de talones de pie</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_talones_pie<br>
+          Start: magnific_anatomical-3d-model-illus_tf2hg5ymZJ.png<br>
+          End: magnific_anatomical-3d-model-illus_tf2hww2mZJ.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_talones_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_talones_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación de talones en máquina</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_talones_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_aQnC7x7fSh.png<br>
+          End: magnific_anatomical-3d-model-illus_aQnC7FxfSh.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_talones_smith_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_talones_smith_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación de talones en Smith</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_talones_smith<br>
+          Start: magnific_anatomical-3d-model-illus_1sBx24Yr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_SOawVE9Ub8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_unilateral_talon_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_unilateral_talon_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación unilateral de talón</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_unilateral_talon<br>
+          Start: magnific_anatomical-3d-model-illus_PiH9d0242C.png<br>
+          End: magnific_anatomical-3d-model-illus_CHWuPVoEEy.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_talones_prensa_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_talones_prensa_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación de talones en prensa</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_talones_prensa<br>
+          Start: magnific_anatomical-3d-model-illus_SOaw0AbUb8.png<br>
+          End: magnific_anatomical-3d-model-illus_SOaw02qUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_talones_sentado_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_talones_sentado_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación de talones sentado</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_talones_sentado<br>
+          Start: magnific_anatomical-3d-model-illus_J9uyDczOq4.png<br>
+          End: magnific_anatomical-3d-model-illus_SOawVFiUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_sentado_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_sentado_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación sentado con mancuernas</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_sentado_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_TeJMqFtVNR.png<br>
+          End: magnific_anatomical-3d-model-illus_WMU0H3XcXe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/elevacion_sentado_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/elevacion_sentado_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Elevación sentado en máquina</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: elevacion_sentado_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_rlojAGyxtc.png<br>
+          End: magnific_anatomical-3d-model-illus_rlojnNjxtc.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/calf_raise_sentado_unilateral_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/calf_raise_sentado_unilateral_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Calf raise sentado unilateral</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: calf_raise_sentado_unilateral<br>
+          Start: magnific_anatomical-3d-model-illus_9Rb6B8LNYZ.png<br>
+          End: magnific_anatomical-3d-model-illus_CHWuPmQEEy.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/tibialis_raise_pared_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/tibialis_raise_pared_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Tibialis raise contra pared</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: tibialis_raise_pared<br>
+          Start: magnific_anatomical-3d-model-illus_SOaw0MlUb8.png<br>
+          End: magnific_anatomical-3d-model-illus_SOaw00jUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/dorsiflexion_banda_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/dorsiflexion_banda_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Dorsiflexión con banda</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: dorsiflexion_banda<br>
+          Start: magnific_anatomical-3d-model-illus_xg8LGWmjfW.png<br>
+          End: magnific_anatomical-3d-model-illus_xg8LYeCjfW.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/caminata_talones_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/caminata_talones_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Caminata sobre talones</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: caminata_talones<br>
+          Start: magnific_anatomical-3d-model-illus_oh3ILcG829.png<br>
+          End: magnific_anatomical-3d-model-illus_Uyf7MS3wny.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/reverse_calf_raise_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/reverse_calf_raise_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Reverse calf raise</div>
+        <div class="muscle">Pantorrillas</div>
+        <div class="filenames">
+          ID: reverse_calf_raise<br>
+          Start: magnific_anatomical-3d-model-illus_nTgWENHYQD.png<br>
+          End: magnific_anatomical-3d-model-illus_e89XjoZdqL.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/encogimientos_barra_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/encogimientos_barra_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Encogimientos con barra</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: encogimientos_barra<br>
+          Start: magnific_anatomical-3d-model-illus_Kjd1RCvkqp.png<br>
+          End: magnific_anatomical-3d-model-illus_Kjd1Az3kqp.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/encogimientos_mancuernas_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/encogimientos_mancuernas_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Encogimientos con mancuernas</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: encogimientos_mancuernas<br>
+          Start: magnific_anatomical-3d-model-illus_Bmi8jMkoQR.png<br>
+          End: magnific_anatomical-3d-model-illus_rlojngJxtc.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/encogimientos_maquina_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/encogimientos_maquina_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Encogimientos en máquina</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: encogimientos_maquina<br>
+          Start: magnific_anatomical-3d-model-illus_gJvUcx3SXO.png<br>
+          End: magnific_anatomical-3d-model-illus_IaZmUCMtvE.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/farmer_walk_trapecio_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/farmer_walk_trapecio_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Farmer walk</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: farmer_walk_trapecio<br>
+          Start: magnific_anatomical-3d-model-illus_mCAvSmChJQ.png<br>
+          End: magnific_anatomical-3d-model-illus_rlojnUHxtc.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/trap_bar_carry_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/trap_bar_carry_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Trap bar carry</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: trap_bar_carry<br>
+          Start: magnific_anatomical-3d-model-illus_wPCJVwj7EI.png<br>
+          End: magnific_anatomical-3d-model-illus_ONQPXGxynm.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/face_pull_trapecio_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/face_pull_trapecio_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Face pull</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: face_pull_trapecio<br>
+          Start: magnific_anatomical-3d-model-illus_1sBxAjPr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_swmg0AGl8e.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/reverse_fly_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/reverse_fly_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Reverse fly</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: reverse_fly<br>
+          Start: magnific_anatomical-3d-model-illus_jSIsngSLD0.png<br>
+          End: magnific_anatomical-3d-model-illus_cDwTbF30eP.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/reverse_pec_deck_trapecio_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/reverse_pec_deck_trapecio_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Reverse pec deck</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: reverse_pec_deck_trapecio<br>
+          Start: magnific_anatomical-3d-model-illus_NZ5i8R86D9.png<br>
+          End: magnific_anatomical-3d-model-illus_aQnCyP3fSh.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/y_raise_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/y_raise_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Y-raise</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: y_raise<br>
+          Start: magnific_anatomical-3d-model-illus_1sBxAsRr4r.png<br>
+          End: magnific_anatomical-3d-model-illus_SOawMexUb8.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/wall_slides_trapecio_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/wall_slides_trapecio_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Wall slides</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: wall_slides_trapecio<br>
+          Start: magnific_anatomical-3d-model-illus_EqcQPNpuuO.png<br>
+          End: magnific_anatomical-3d-model-illus_WMU0q1NcXe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/scapular_pull_ups_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/scapular_pull_ups_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Scapular pull-ups</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: scapular_pull_ups<br>
+          Start: magnific_anatomical-3d-model-illus_fFYEO9BCDY.png<br>
+          End: magnific_anatomical-3d-model-illus_fFYEyvUCDY.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/depresion_escapular_polea_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/depresion_escapular_polea_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Depresión escapular en polea</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: depresion_escapular_polea<br>
+          Start: magnific_anatomical-3d-model-illus_y6F4dtbPW9.png<br>
+          End: magnific_anatomical-3d-model-illus_y6F4BDhPW9.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/chin_tucks_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/chin_tucks_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Chin tucks</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: chin_tucks<br>
+          Start: magnific_anatomical-3d-model-illus_9Rb6ohgNYZ.png<br>
+          End: magnific_anatomical-3d-model-illus_5xek2Y7Kxe.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/flexion_cervical_isometrica_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/flexion_cervical_isometrica_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Flexión cervical isométrica</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: flexion_cervical_isometrica<br>
+          Start: magnific_anatomical-3d-model-illus_8vRtlOOIrU.png<br>
+          End: magnific_anatomical-3d-model-illus_43qN8aq9Aa.png
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="image-container animating">
+        <img class="start-frame" src="/exercises/extension_cervical_isometrica_start.png" alt="Fase inicial">
+        <img class="end-frame" src="/exercises/extension_cervical_isometrica_end.png" alt="Fase final">
+      </div>
+      <div class="info">
+        <div class="title">Extensión cervical isométrica</div>
+        <div class="muscle">Trapecio/Cuello</div>
+        <div class="filenames">
+          ID: extension_cervical_isometrica<br>
+          Start: magnific_anatomical-3d-model-illus_swmgWd4l8e.png<br>
+          End: magnific_anatomical-3d-model-illus_swmgcs8l8e.png
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  <script>
+    // Double validation: alternate frames to simulate the app's transition
+    console.log("Visual verification page initialized successfully.");
+  </script>
+</body>
+</html>
