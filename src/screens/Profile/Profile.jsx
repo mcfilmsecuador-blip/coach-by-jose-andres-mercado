@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { usePlan } from '../../context/PlanContext';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Settings as SettingsIcon, Award, Calendar, Activity, ChevronRight, LogOut, 
   Sliders, Scale, ShieldAlert, Flame, Zap, Trophy, TrendingUp, Crown, Target, 
-  Dumbbell 
+  Dumbbell, Camera
 } from 'lucide-react';
 import Premium from '../Premium/Premium';
 import Settings from './Settings';
@@ -18,6 +18,76 @@ const Profile = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [showAdjustPlan, setShowAdjustPlan] = useState(false);
   const [showProgressView, setShowProgressView] = useState(false);
+
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
+  const { updateProfile } = usePlan();
+
+  const triggerImageSelect = () => {
+    if (uploading) return;
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("La imagen es demasiado grande. Elige una de menos de 10 MB.");
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = async () => {
+          const canvas = document.createElement('canvas');
+          const maxDimension = 160;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxDimension) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            }
+          } else {
+            if (height > maxDimension) {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+          await updateProfile({ avatar: compressedDataUrl });
+          setUploading(false);
+        };
+        img.onerror = () => {
+          alert("Error al cargar la imagen.");
+          setUploading(false);
+        };
+        img.src = event.target.result;
+      };
+      reader.onerror = () => {
+        alert("Error al leer el archivo.");
+        setUploading(false);
+      };
+      reader.readAsDataURL(file);
+    } catch (err) {
+      console.error("Error processing avatar upload:", err);
+      alert("Ocurrió un error al procesar la imagen.");
+      setUploading(false);
+    }
+  };
 
   if (showPremium) {
     return <Premium onBack={() => setShowPremium(false)} />;
@@ -81,11 +151,49 @@ const Profile = () => {
       
       {/* User Card */}
       <div className="flex-row align-center mb-lg" style={{ padding: '16px', backgroundColor: 'var(--color-bg-surface)', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border)' }}>
-        <img 
-          src={userProfile.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150"} 
-          alt="Avatar" 
-          style={{ width: '64px', height: '64px', borderRadius: '32px', marginRight: '16px', border: '2px solid var(--color-primary)' }}
-        />
+        <div style={{ position: 'relative', marginRight: '16px', cursor: 'pointer' }} onClick={triggerImageSelect} title="Cambiar foto de perfil">
+          <img 
+            src={userProfile.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150"} 
+            alt="Avatar" 
+            style={{ 
+              width: '64px', 
+              height: '64px', 
+              borderRadius: '32px', 
+              border: '2px solid var(--color-primary)',
+              objectFit: 'cover',
+              opacity: uploading ? 0.5 : 1,
+              transition: 'opacity 0.2s ease'
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            bottom: '-2px',
+            right: '-2px',
+            backgroundColor: 'var(--color-primary)',
+            color: '#000',
+            borderRadius: '50%',
+            width: '20px',
+            height: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
+            border: '1px solid var(--color-bg-surface)'
+          }}>
+            {uploading ? (
+              <span style={{ fontSize: '8px', fontWeight: '800' }}>...</span>
+            ) : (
+              <Camera size={11} strokeWidth={2.5} />
+            )}
+          </div>
+          <input 
+            type="file" 
+            ref={fileInputRef} 
+            onChange={handleFileChange} 
+            accept="image/*" 
+            style={{ display: 'none' }} 
+          />
+        </div>
         <div className="flex-col flex-1">
           <h2 className="text-h2" style={{ margin: 0 }}>{userProfile.name || "Usuario Coach"}</h2>
           <span className="text-caption text-secondary">{userProfile.city || "Cuenca"}, {userProfile.country || "Ecuador"}</span>
