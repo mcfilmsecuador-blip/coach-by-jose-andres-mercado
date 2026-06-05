@@ -44,9 +44,9 @@ const AppHeader = ({ title, subtitle, showBack, onBack, onNotificationsClick, av
             <img 
               src="/logo_coach_transparent.png" 
               alt="Coach Logo" 
-              style={{ height: '40px', objectFit: 'contain' }} 
+              style={{ height: '52px', objectFit: 'contain' }} 
             />
-            <span style={{ fontSize: '11px', color: 'var(--color-text-secondary)', marginTop: '4px', fontWeight: '500' }}>
+            <span style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.4)', marginTop: '2px', fontWeight: '500' }}>
               Entrenamiento Personal
             </span>
           </div>
@@ -121,23 +121,23 @@ const AppHeader = ({ title, subtitle, showBack, onBack, onNotificationsClick, av
 
       {/* Row 2: Greeting + Active workout subtitle */}
       {!showBack && (
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '4px' }}>
           <h2 
             style={{ 
               fontFamily: "'Outfit', sans-serif", 
-              fontSize: '18px', 
-              fontWeight: '800', 
+              fontSize: '14px', 
+              fontWeight: '700', 
               color: '#FFF', 
               margin: 0,
-              letterSpacing: '-0.3px'
+              letterSpacing: '-0.2px'
             }}
           >
             {title}
           </h2>
           <span 
             style={{ 
-              fontSize: '12px', 
-              color: 'var(--color-text-secondary)', 
+              fontSize: '11px', 
+              color: 'rgba(255, 255, 255, 0.5)', 
               fontWeight: '500'
             }}
           >
