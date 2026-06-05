@@ -914,16 +914,24 @@ const Training = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
-      {/* Header + Tabs: zona fija, sin overflow-hidden, a ancho completo */}
       <div style={{
         paddingTop: 'calc(env(safe-area-inset-top) + var(--spacing-lg))',
-        paddingLeft: '0',
-        paddingRight: '0',
+        paddingLeft: '16px',
+        paddingRight: '16px',
         backgroundColor: 'var(--color-bg-base)',
         flexShrink: 0
       }}>
-        <h1 className="text-h1" style={{ paddingLeft: '16px', paddingRight: '16px', marginBottom: '8px' }}>Entrenamiento</h1>
-        {renderTabs()}
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', width: '100%' }}>
+          <h1 className="text-h1" style={{ margin: 0 }}>Entrenamiento</h1>
+          <img 
+            src="/logo_coach_transparent.png" 
+            alt="Coach Logo" 
+            style={{ height: '40px', objectFit: 'contain' }} 
+          />
+        </div>
+        <div style={{ marginLeft: '-16px', marginRight: '-16px' }}>
+          {renderTabs()}
+        </div>
       </div>
 
       {/* Contenido scrolleable */}

@@ -77,9 +77,16 @@ const Nutrition = () => {
       <div style={{ position: 'relative', zIndex: 5, display: 'flex', flexDirection: 'column', gap: '20px' }}>
         
         <header className="mb-xs" style={{ marginTop: '8px' }}>
-          <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '24px', fontWeight: '800', color: '#FFF', margin: 0, letterSpacing: '-0.5px' }}>
-            Nutrición de Hoy
-          </h1>
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '24px', fontWeight: '800', color: '#FFF', margin: 0, letterSpacing: '-0.5px' }}>
+              Nutrición de Hoy
+            </h1>
+            <img 
+              src="/logo_coach_transparent.png" 
+              alt="Coach Logo" 
+              style={{ height: '40px', objectFit: 'contain' }} 
+            />
+          </div>
           <p className="text-caption text-secondary" style={{ marginTop: '4px', fontSize: '12px' }}>
             Plan dietario adaptado especialmente para <strong style={{ color: '#fff' }}>{activePlan.userProfile.city}</strong>.
           </p>

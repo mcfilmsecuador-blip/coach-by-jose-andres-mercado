@@ -443,7 +443,7 @@ const WorkoutExecution = ({ workout, onFinish, onBack }) => {
           <img
             src="/logo_coach_transparent.png"
             alt="Coach App Logo"
-            style={{ height: '36px', objectFit: 'contain' }}
+            style={{ height: '40px', objectFit: 'contain' }}
           />
         </div>
 

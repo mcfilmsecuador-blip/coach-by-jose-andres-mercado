@@ -147,7 +147,14 @@ const Profile = () => {
 
   return (
     <div className="screen-container" style={{ paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))', overflowY: 'auto' }}>
-      <h1 className="text-h1 mb-lg">Perfil</h1>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', width: '100%' }}>
+        <h1 className="text-h1" style={{ margin: 0 }}>Perfil</h1>
+        <img 
+          src="/logo_coach_transparent.png" 
+          alt="Coach Logo" 
+          style={{ height: '40px', objectFit: 'contain' }} 
+        />
+      </div>
       
       {/* User Card */}
       <div className="flex-row align-center mb-lg" style={{ padding: '16px', backgroundColor: 'var(--color-bg-surface)', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border)' }}>
