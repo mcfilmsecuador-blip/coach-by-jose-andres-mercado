@@ -57,3 +57,7 @@ Esto creará una carpeta llamada `dist/` en la raíz del proyecto que contiene l
 4. Dirígete al **Administrador de Archivos** de tu dominio.
 5. Sube el archivo `.zip` al directorio raíz (usualmente `public_html`).
 6. Descomprime el archivo `.zip` directamente en la carpeta. ¡Listo! Tu web estará en vivo.
+
+---
+Última actualización de configuración: 2026-06-05 (Ajustes de API y diseño de cabeceras).
+
