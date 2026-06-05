@@ -3,6 +3,8 @@ import { usePlan } from '../../context/PlanContext';
 import { useToast } from '../../context/ToastContext';
 import { Send, Sparkles, User, Bot, Dumbbell, Trash2 } from 'lucide-react';
 import { exercisesDb } from '../../data/exercisesData.js';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 
 const generateMessageId = (prefix) => `${prefix}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 
@@ -230,9 +232,21 @@ INSTRUCCIONES CRÍTICAS DE COMUNICACIÓN (PERSONALIDAD Y ESTILO):
 5. No inventes datos. Si no sabes algo, sé sincero e ingenioso.
       `.trim();
 
-      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+      // Fetch OpenAI API Key from Firestore config dynamically to prevent GitHub scanning and revocation
+      let apiKey = import.meta.env.VITE_OPENAI_API_KEY;
       if (!apiKey) {
-        throw new Error("Clave de API de OpenAI no encontrada. Por favor asegúrate de configurar VITE_OPENAI_API_KEY en tu archivo .env.");
+        try {
+          const keyDoc = await getDoc(doc(db, "keys", "openai"));
+          if (keyDoc.exists()) {
+            apiKey = keyDoc.data().apiKey;
+          }
+        } catch (err) {
+          console.error("Error al obtener la clave de API desde Firestore:", err);
+        }
+      }
+
+      if (!apiKey) {
+        throw new Error("Clave de API de OpenAI no encontrada. Por favor asegúrate de configurar la base de datos.");
       }
 
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
