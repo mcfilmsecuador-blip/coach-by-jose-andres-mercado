@@ -239,14 +239,13 @@ INSTRUCCIONES CRÍTICAS DE COMUNICACIÓN (PERSONALIDAD Y ESTILO):
           const keyDoc = await getDoc(doc(db, "keys", "openai"));
           if (keyDoc.exists()) {
             apiKey = keyDoc.data().apiKey;
+          } else {
+            throw new Error("El documento keys/openai no existe.");
           }
         } catch (err) {
           console.error("Error al obtener la clave de API desde Firestore:", err);
+          throw new Error(`Error al leer base de datos: ${err.message || err}`);
         }
-      }
-
-      if (!apiKey) {
-        throw new Error("Clave de API de OpenAI no encontrada. Por favor asegúrate de configurar la base de datos.");
       }
 
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
