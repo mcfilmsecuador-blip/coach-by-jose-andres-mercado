@@ -197,6 +197,13 @@ const rawGroups = {
     ["Saltos al cajón", "peso_corporal", "principiante", false, "saltos_al_cajon"],
     ["Caminata en puntas", "peso_corporal", "principiante", false, "caminata_en_puntas"],
   ],
+  "Cardio": [
+    ["Caminadora", "maquina", "principiante", true, "caminadora"],
+    ["Bicicleta", "maquina", "principiante", true, "bicicleta"],
+    ["Elíptica", "maquina", "principiante", true, "eliptica"],
+    ["Escalera", "maquina", "principiante", true, "escalera"],
+    ["Trotar en el vecindario", "peso_corporal", "principiante", false, "trotar"],
+  ],
 };
 
 const muscleVideos = {
@@ -232,6 +239,8 @@ Object.entries(rawGroups).forEach(([mainMuscle, list]) => {
       secondaryMuscles = ["Glúteos", "Pantorrillas"];
     } else if (mainMuscle === "Isquiotibiales") {
       secondaryMuscles = ["Glúteos", "Pantorrillas"];
+    } else if (mainMuscle === "Cardio") {
+      secondaryMuscles = ["Cuádriceps", "Pantorrillas"];
     } else {
       secondaryMuscles = ["Abdomen/Core"];
     }

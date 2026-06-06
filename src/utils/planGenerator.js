@@ -33,6 +33,9 @@ function generateWorkoutPlan(profile) {
 
   // Filter exercises compatible with equipment and injuries
   const availableExercises = exercisesDb.filter(ex => {
+    // Los ejercicios de cardio omiten el filtro estricto de equipamiento de fuerza
+    if (ex.category === "cardio") return true;
+
     // Equipment filter
     const equip = equipment ? equipment.toLowerCase() : "";
     if (equip === "casa_sin_equipo" || equip === "casa sin equipo") {
@@ -94,6 +97,7 @@ function generateWorkoutPlan(profile) {
       restSeconds = 60;
       rpe = 8;
     } else if (exercise.category === "cardio") {
+      sets = 1;
       reps = "10-15 min";
       restSeconds = 0;
       rpe = 6;
@@ -109,10 +113,21 @@ function generateWorkoutPlan(profile) {
     };
   };
 
+  const TREN_SUPERIOR = ["Pecho", "Espalda", "Hombros", "Bíceps", "Tríceps"];
+  const TREN_INFERIOR = ["Cuádriceps", "Isquiotibiales", "Glúteos", "Pantorrillas"];
+
   const getExercisesForMuscle = (muscleName, count = 1) => {
     let list = availableExercises.filter(ex => ex.mainMuscle === muscleName);
     if (list.length === 0) {
       list = availableExercises.filter(ex => ex.secondaryMuscles && ex.secondaryMuscles.includes(muscleName));
+    }
+    if (list.length === 0) {
+      // Fallback por región corporal (superior vs inferior) para evitar mezclar pecho y piernas
+      if (TREN_INFERIOR.includes(muscleName)) {
+        list = availableExercises.filter(ex => TREN_INFERIOR.includes(ex.mainMuscle));
+      } else if (TREN_SUPERIOR.includes(muscleName)) {
+        list = availableExercises.filter(ex => TREN_SUPERIOR.includes(ex.mainMuscle));
+      }
     }
     if (list.length === 0) {
       list = availableExercises.filter(ex => ex.category === "fuerza");
@@ -133,7 +148,20 @@ function generateWorkoutPlan(profile) {
   };
 
   const getCardioExercise = () => {
-    const list = availableExercises.filter(ex => ex.category === "cardio");
+    // Si entrena en casa (casa_sin_equipo o casa_con_mancuernas), preferimos trotar.
+    // Si entrena en gimnasio, preferimos máquinas (caminadora, bicicleta, elíptica, escalera).
+    const equip = equipment ? equipment.toLowerCase() : "";
+    const isHome = equip.includes("casa");
+    
+    let list = availableExercises.filter(ex => ex.category === "cardio");
+    if (isHome) {
+      const homeCardio = list.filter(ex => !ex.requiresMachine);
+      if (homeCardio.length > 0) list = homeCardio;
+    } else {
+      const gymCardio = list.filter(ex => ex.requiresMachine);
+      if (gymCardio.length > 0) list = gymCardio;
+    }
+    
     const base = list.length > 0 ? list : exercisesDb.filter(ex => ex.category === "cardio");
     return formatExercise(base[Math.floor(Math.random() * base.length)] || exercisesDb[0]);
   };
