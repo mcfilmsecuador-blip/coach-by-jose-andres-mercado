@@ -101,7 +101,7 @@ const AdjustPlan = ({ onBack }) => {
         </div>
       </div>
 
-      <div style={{ padding: '16px', paddingBottom: '48px', overflowY: 'auto', flex: 1 }}>
+      <div style={{ padding: '16px', paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))', overflowY: 'auto', flex: 1 }}>
         <div className="flex-col gap-sm">
           
           {/* Biometrics */}
