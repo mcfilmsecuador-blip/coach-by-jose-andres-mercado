@@ -222,9 +222,24 @@ const Profile = () => {
             <span style={{ fontWeight: '700', color: imcColor }}>{imc} ({imcClass})</span>
           </div>
           <div className="flex-row justify-between mb-xs">
-            <span className="text-secondary text-body">Rango Saludable:</span>
+            <span className="text-secondary text-body">Rango de Peso Recomendado:</span>
             <span style={{ fontWeight: '600' }}>{healthyMin} - {healthyMax} kg</span>
           </div>
+          {weightVal > healthyMax && (
+            <div style={{ fontSize: '11px', color: 'var(--color-warning)', marginTop: '-4px', marginBottom: '6px', fontWeight: '500', textAlign: 'right' }}>
+              Tu peso está {(weightVal - healthyMax).toFixed(1)} kg por encima del máximo recomendado.
+            </div>
+          )}
+          {weightVal < healthyMin && (
+            <div style={{ fontSize: '11px', color: '#ffeb3b', marginTop: '-4px', marginBottom: '6px', fontWeight: '500', textAlign: 'right' }}>
+              Tu peso está {(healthyMin - weightVal).toFixed(1)} kg por debajo del mínimo recomendado.
+            </div>
+          )}
+          {weightVal >= healthyMin && weightVal <= healthyMax && (
+            <div style={{ fontSize: '11px', color: 'var(--color-success)', marginTop: '-4px', marginBottom: '6px', fontWeight: '500', textAlign: 'right' }}>
+              ¡Tu peso está dentro del rango saludable recomendado!
+            </div>
+          )}
           <div className="flex-row justify-between mb-xs">
             <span className="text-secondary text-body">Peso Ideal de Referencia:</span>
             <span style={{ fontWeight: '700', color: 'var(--color-primary)' }}>{idealWeight} kg</span>
