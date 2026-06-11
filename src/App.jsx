@@ -43,6 +43,12 @@ function AppContent() {
     localStorage.getItem('coach_onboarding_completed') === 'true'
   );
 
+  // Initialize theme from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('coach_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
   // Compute the current app state dynamically
   let appState = 'splash';
   if (!splashFinished) {
