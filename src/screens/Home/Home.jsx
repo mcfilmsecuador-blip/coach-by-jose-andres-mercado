@@ -112,6 +112,9 @@ const Home = () => {
   return (
     <div 
       className="screen-container" 
+      onTouchStart={(e) => console.log("=== TOUCH START ===", e.touches[0].clientY)}
+      onTouchMove={(e) => console.log("=== TOUCH MOVE ===", e.touches[0].clientY)}
+      onTouchEnd={() => console.log("=== TOUCH END ===")}
       style={{ 
         position: 'absolute', 
         top: 0,
@@ -119,7 +122,7 @@ const Home = () => {
         right: 0,
         bottom: 0,
         overflowX: 'hidden',
-        overflowY: 'auto',
+        overflowY: 'scroll',
         backgroundColor: 'var(--color-bg-base)',
         paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))'
       }}
