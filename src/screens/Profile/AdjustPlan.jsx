@@ -92,7 +92,7 @@ const AdjustPlan = ({ onBack }) => {
   return (
     <div className="screen-container" style={{ padding: 0, display: 'flex', flexDirection: 'column', height: '100%' }}>
       {/* Header */}
-      <div style={{ padding: '16px', backgroundColor: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)' }}>
+      <div style={{ padding: '16px', paddingTop: 'calc(env(safe-area-inset-top) + 16px)', backgroundColor: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="flex-row align-center gap-md">
           <button onClick={onBack} style={{ background: 'none', border: 'none', color: 'var(--color-text-primary)', cursor: 'pointer' }}>
             <ArrowLeft size={24} />

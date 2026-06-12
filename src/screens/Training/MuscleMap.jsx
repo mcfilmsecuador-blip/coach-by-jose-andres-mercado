@@ -108,6 +108,7 @@ const MuscleMap = ({ onBack, exercise, onSelectMuscle }) => {
       {/* Header */}
       <div style={{
         padding: '16px',
+        paddingTop: 'calc(env(safe-area-inset-top) + 16px)',
         backgroundColor: 'var(--color-bg-surface)',
         borderBottom: '1px solid var(--color-border)',
         display: 'flex',

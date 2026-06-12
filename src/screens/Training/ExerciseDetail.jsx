@@ -41,7 +41,7 @@ const ExerciseDetail = ({ exercise, workoutDayId, onBack, onSearchSwap }) => {
   return (
     <div className="screen-container" style={{ padding: 0, overflowY: 'auto' }}>
       {/* Back button */}
-      <div style={{ padding: '16px', backgroundColor: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div style={{ padding: '16px', paddingTop: 'calc(env(safe-area-inset-top) + 16px)', backgroundColor: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', gap: '16px' }}>
         <button 
           onClick={onBack}
           style={{ background: 'none', border: 'none', color: '#FFF', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}

@@ -478,7 +478,7 @@ const Settings = ({ onBack }) => {
 
   return (
     <div className="screen-container" style={{ padding: 0, paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))', overflowY: 'auto' }}>
-      <div style={{ padding: '16px', backgroundColor: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)' }}>
+      <div style={{ padding: '16px', paddingTop: 'calc(env(safe-area-inset-top) + 16px)', backgroundColor: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="flex-row align-center gap-md">
           <button onClick={handleBackClick} style={{ background: 'none', border: 'none', color: 'var(--color-text-primary)', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
             <ArrowLeft size={24} />
