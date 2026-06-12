@@ -50,6 +50,26 @@ function AppContent() {
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
 
+  // Layout Debugger to trace scrolling issues in iOS WebView
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const rootEl = document.getElementById('root');
+      const screenEl = document.querySelector('.screen-container');
+      if (rootEl && screenEl) {
+        console.log("=== LAYOUT DIMENSIONS ===");
+        console.log("Root height:", rootEl.offsetHeight, "px");
+        console.log("Screen clientHeight:", screenEl.clientHeight, "px");
+        console.log("Screen scrollHeight:", screenEl.scrollHeight, "px");
+        console.log("Screen offsetHeight:", screenEl.offsetHeight, "px");
+        console.log("Screen computed position:", window.getComputedStyle(screenEl).position);
+        console.log("Screen computed overflowY:", window.getComputedStyle(screenEl).overflowY);
+      } else {
+        console.log("=== LAYOUT DIMENSIONS: Root or Screen container not found ===");
+      }
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
   // Compute the current app state dynamically
   let appState = 'splash';
   if (!splashFinished) {
