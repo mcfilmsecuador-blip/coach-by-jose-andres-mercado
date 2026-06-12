@@ -29,10 +29,20 @@
     <link rel="manifest" href="./manifest.json" />
     <link rel="apple-touch-icon" href="./logo.png" />
     <title>Coach - Entrenamiento Personal y Nutrición Premium</title>
-    <script type="module" crossorigin src="./assets/index-DFd1Mtov.js"></script>
+    <script>
+      console.log("=== HTML HEAD LOADED ===");
+      window.addEventListener('error', function(e) {
+        console.error("GLOBAL ERROR CAPTURED:", e.message, "at", e.filename, ":", e.lineno);
+      }, true);
+    </script>
+    <script type="module" crossorigin src="./assets/index-vEEJYI2u.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CieODTsG.css">
   </head>
   <body>
+    <div id="test-indicator" style="position: absolute; top: 10px; left: 10px; z-index: 99999; background: #2563eb; color: white; padding: 10px 16px; font-weight: bold; border-radius: 8px; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">HTML READY (Coach by Jose Andres Mercado)</div>
     <div id="root"></div>
+    <script>
+      console.log("=== BODY SCRIPT LOADED ===");
+    </script>
   </body>
 </html>
