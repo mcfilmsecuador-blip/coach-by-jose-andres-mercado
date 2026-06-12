@@ -113,10 +113,13 @@ const Home = () => {
     <div 
       className="screen-container" 
       style={{ 
-        position: 'relative', 
+        position: 'absolute', 
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         overflowX: 'hidden',
         overflowY: 'auto',
-        minHeight: 0,
         backgroundColor: 'var(--color-bg-base)',
         paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))'
       }}

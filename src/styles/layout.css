@@ -48,9 +48,11 @@ html, body {
 }
 
 .screen-container {
-  flex: 1;
-  min-height: 0;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-y: auto;
   overflow-x: hidden; /* Prevent horizontal scroll inside screens */
   padding: calc(env(safe-area-inset-top) + var(--spacing-lg)) var(--spacing-md) calc(var(--nav-height) + var(--spacing-lg) + env(safe-area-inset-bottom)) var(--spacing-md);
