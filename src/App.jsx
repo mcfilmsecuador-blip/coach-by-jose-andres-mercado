@@ -1,3 +1,4 @@
+console.log("=== APP.JSX LOADED AND EXECUTING ===");
 import { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';

@@ -1,3 +1,4 @@
+console.log("=== MAIN.JSX LOADED AND EXECUTING ===");
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'

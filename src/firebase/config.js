@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeAuth, indexedDBLocalPersistence } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -15,7 +15,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Services
-export const auth = getAuth(app);
+// Initialize Services with indexedDB persistence for Capacitor compatibility
+export const auth = initializeAuth(app, {
+  persistence: indexedDBLocalPersistence
+});
+
 export const db = getFirestore(app);
 export default app;
