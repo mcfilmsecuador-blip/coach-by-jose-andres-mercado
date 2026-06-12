@@ -115,6 +115,8 @@ const Home = () => {
       style={{ 
         position: 'relative', 
         overflowX: 'hidden',
+        overflowY: 'auto',
+        minHeight: 0,
         backgroundColor: 'var(--color-bg-base)',
         paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))'
       }}

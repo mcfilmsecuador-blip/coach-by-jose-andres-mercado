@@ -111,7 +111,7 @@ function AppContent() {
     if (appState === 'main') {
       return (
         <motion.div key="main" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-          <div className="flex-1" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative', minHeight: 0 }}>
+          <div className="flex-1" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative', minHeight: 0, height: '100%' }}>
             <ErrorBoundary>
               <Routes>
                 <Route path="/" element={<Home />} />

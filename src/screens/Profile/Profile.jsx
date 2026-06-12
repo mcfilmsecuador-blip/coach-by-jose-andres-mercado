@@ -146,7 +146,7 @@ const Profile = () => {
 
 
   return (
-    <div className="screen-container" style={{ paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))', overflowY: 'auto' }}>
+    <div className="screen-container" style={{ paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))', overflowY: 'auto', minHeight: 0 }}>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', width: '100%' }}>
         <h1 className="text-h1" style={{ margin: 0 }}>Perfil</h1>
         <img 

@@ -937,6 +937,7 @@ const Training = () => {
       {/* Contenido scrolleable */}
       <div style={{
         flex: 1,
+        minHeight: 0,
         overflowY: 'auto',
         overflowX: 'visible',
         paddingLeft: '16px',

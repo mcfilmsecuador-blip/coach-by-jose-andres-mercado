@@ -56,6 +56,8 @@ const Nutrition = () => {
       style={{ 
         position: 'relative',
         overflowX: 'hidden',
+        overflowY: 'auto',
+        minHeight: 0,
         paddingBottom: 'calc(var(--nav-height) + var(--spacing-lg))',
         backgroundColor: 'var(--color-bg-base)'
       }}

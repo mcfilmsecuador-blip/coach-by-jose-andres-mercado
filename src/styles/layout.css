@@ -24,8 +24,7 @@ html, body {
 #root {
   width: 100%;
   max-width: 480px;
-  height: 100vh;
-  height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+  height: 100%;
   margin: 0 auto;
   background-color: var(--color-bg-base);
   position: relative;
