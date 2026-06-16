@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { initializeAuth, indexedDBLocalPersistence } from 'firebase/auth';
+import { initializeAuth, indexedDBLocalPersistence, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { Capacitor } from '@capacitor/core';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -15,10 +16,15 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Services with indexedDB persistence for Capacitor compatibility
-export const auth = initializeAuth(app, {
-  persistence: indexedDBLocalPersistence
-});
+// Initialize Services with indexedDB persistence for Capacitor compatibility,
+// and standard web persistence for web browser environments.
+const isNative = Capacitor.isNativePlatform();
+
+export const auth = isNative
+  ? initializeAuth(app, {
+      persistence: indexedDBLocalPersistence
+    })
+  : getAuth(app);
 
 export const db = getFirestore(app);
 export default app;

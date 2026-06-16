@@ -51,16 +51,60 @@ const GoogleButton = ({ onClick, disabled }) => (
   </button>
 );
 
+const AppleButton = ({ onClick, disabled }) => (
+  <button 
+    type="button" 
+    onClick={onClick}
+    disabled={disabled}
+    style={{
+      width: '100%',
+      padding: '15px',
+      borderRadius: '12px',
+      border: '1.5px solid rgba(255, 255, 255, 0.08)',
+      backgroundColor: 'rgba(255, 255, 255, 0.02)',
+      color: '#FFF',
+      fontSize: '15px',
+      fontWeight: '600',
+      fontFamily: "'Outfit', sans-serif",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '12px',
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      transition: 'all 0.2s ease-in-out',
+      marginTop: '12px',
+      opacity: disabled ? 0.6 : 1
+    }}
+    onMouseEnter={(e) => {
+      if (!disabled) {
+        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+      }
+    }}
+    onMouseLeave={(e) => {
+      if (!disabled) {
+        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+      }
+    }}
+  >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.52-.63.73-1.18 1.87-1.03 2.98.88.07 2.03-.47 2.98-1.44" fill="#FFFFFF"/>
+    </svg>
+    Continuar con Apple
+  </button>
+);
+
 const Auth = ({ onComplete }) => {
   const { showToast } = useToast();
-  const { login, signup, loginWithGoogle, resetPassword } = useAuth();
+  const { login, signup, loginWithGoogle, loginWithApple, resetPassword } = useAuth();
   const [view, setView] = useState('login'); // login, register, recover
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const getAuthErrorMessage = (code) => {
+  const getAuthErrorMessage = (code, message) => {
     switch (code) {
       case 'auth/invalid-email':
         return 'El correo electrónico no es válido.';
@@ -80,9 +124,9 @@ const Auth = ({ onComplete }) => {
       case 'auth/unauthorized-domain':
         return `Dominio no autorizado. Agrega "${window.location.hostname}" en la consola de Firebase (Authentication > Ajustes > Dominios autorizados).`;
       case 'auth/operation-not-allowed':
-        return 'El proveedor de inicio de sesión de Google no está habilitado en tu consola de Firebase.';
+        return 'El proveedor de inicio de sesión de Google o Apple no está habilitado en tu consola de Firebase.';
       default:
-        return 'Ocurrió un error. Inténtalo de nuevo.';
+        return `Ocurrió un error (${code || 'desconocido'}): ${message || 'Inténtalo de nuevo.'}`;
     }
   };
 
@@ -98,7 +142,7 @@ const Auth = ({ onComplete }) => {
       onComplete();
     } catch (err) {
       console.error(err);
-      showToast(getAuthErrorMessage(err.code), 'error');
+      showToast(getAuthErrorMessage(err.code, err.message), 'error');
     } finally {
       setLoading(false);
     }
@@ -116,7 +160,7 @@ const Auth = ({ onComplete }) => {
       onComplete();
     } catch (err) {
       console.error(err);
-      showToast(getAuthErrorMessage(err.code), 'error');
+      showToast(getAuthErrorMessage(err.code, err.message), 'error');
     } finally {
       setLoading(false);
     }
@@ -130,7 +174,21 @@ const Auth = ({ onComplete }) => {
       onComplete();
     } catch (err) {
       console.error(err);
-      showToast(getAuthErrorMessage(err.code), 'error');
+      showToast(getAuthErrorMessage(err.code, err.message), 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    try {
+      setLoading(true);
+      await loginWithApple();
+      showToast('Sesión iniciada con Apple.', 'success');
+      onComplete();
+    } catch (err) {
+      console.error(err);
+      showToast(getAuthErrorMessage(err.code, err.message), 'error');
     } finally {
       setLoading(false);
     }
@@ -148,7 +206,7 @@ const Auth = ({ onComplete }) => {
       setView('login');
     } catch (err) {
       console.error(err);
-      showToast(getAuthErrorMessage(err.code), 'error');
+      showToast(getAuthErrorMessage(err.code, err.message), 'error');
     } finally {
       setLoading(false);
     }
@@ -193,6 +251,7 @@ const Auth = ({ onComplete }) => {
         </div>
 
         <GoogleButton onClick={handleGoogleSignIn} disabled={loading} />
+        <AppleButton onClick={handleAppleSignIn} disabled={loading} />
 
         <div className="flex-row flex-center mt-lg">
           <span className="text-body" style={{ color: 'var(--color-text-secondary)' }}>¿Ya tienes cuenta? </span>
@@ -238,6 +297,7 @@ const Auth = ({ onComplete }) => {
       </div>
 
       <GoogleButton onClick={handleGoogleSignIn} disabled={loading} />
+      <AppleButton onClick={handleAppleSignIn} disabled={loading} />
 
       <div className="flex-row flex-center mt-lg">
         <span className="text-body" style={{ color: 'var(--color-text-secondary)' }}>¿No tienes cuenta? </span>
